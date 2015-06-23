@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+<hibernate-mapping package="org.photography.entity">  
+    <class name="PointComment" table="point_comment">  
+        <id name="pcId" column="pc_id">  
+            <generator class="native" />  
+        </id>  
+        <property name="comment" column="comment" length="1000" type="text" />  
+        <property name="createTime" column="create_time" type="date" />   
+        <property name="praise" column="praise"  type="integer" />   
+        <many-to-one name="user" class="User" column="uid" ></many-to-one>
+        <many-to-one name="point" class="Point" column="point_id" ></many-to-one>
+      
+    </class>  
+</hibernate-mapping>  

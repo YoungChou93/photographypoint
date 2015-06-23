@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+<hibernate-mapping package="org.photography.entity">  
+    <class name="Point" table="points">  
+        <id name="pointId" column="point_id">  
+            <generator class="native" />  
+        </id>  
+        <property name="title" column="title" length="20" type="string" />  
+        <property name="content" column="content" length="1000" type="text" />  
+        <property name="longitude" column="longitude" length="10" type="string" />  
+        <property name="latitude" column="latitude" length="10" type="string" />  
+        <property name="createTime" column="create_time" type="date" />  
+        <property name="city" column="city" length="10" type="string" />  
+        <property name="label" column="label" length="50" type="string" />  
+        <property name="largePhotoUrl" column="largePhotoUrl" length="1500"  type="text" />  
+        <property name="smallPhotoUrl" column="smallPhotoUrl" length="1500"  type="text" /> 
+        <property name="praise" column="praise"  type="integer" />   
+       
+        <many-to-one name="user" class="User" column="uid" ></many-to-one>
+        
+        <set name="pointComments" table="point_comment)" inverse="true">
+             <key column="point_id"></key>
+             <one-to-many class="PointComment"/>
+        </set>
+      
+    </class>  
+</hibernate-mapping>  

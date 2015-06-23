@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+<hibernate-mapping package="org.photography.entity">  
+    <class name="User" table="users">  
+        <id name="uid" column="uid">  
+            <generator class="native" />  
+        </id>  
+        <property name="nickname" column="nickname" length="20" type="string" />  
+        <property name="email" column="email" length="32" type="string" />  
+        <property name="password" column="password" length="15" type="string" />  
+        <property name="gender" column="gender" type="integer" />  
+        <property name="brief" column="brief" length="100" type="string" />  
+        <property name="location" column="location" length="10" type="string" />  
+        <property name="head" column="head" length="100" type="string" />  
+        <property name="registerTime" column="register_time" type="date" />  
+        <property name="weibo" column="weibo" length="12" type="string" /> 
+        <property name="qqNumber" column="qq_number" length="12" type="string" />   
+         
+        <set name="points" table="points" inverse="true">
+             <key column="uid"></key>
+             <one-to-many class="Point"/>
+        </set>
+        
+        <set name="pointComments" table="point_comment" inverse="true">
+             <key column="point_id"></key>
+             <one-to-many class="PointComment"/>
+        </set>
+     
+    </class>  
+</hibernate-mapping>  
