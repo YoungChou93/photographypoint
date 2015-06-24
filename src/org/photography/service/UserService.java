@@ -1,8 +1,12 @@
 package org.photography.service;
 
+import java.util.Date;
+
 import org.hibernate.HibernateException;
 import org.photography.dao.UserDao;
 import org.photography.entity.User;
+import org.photography.utils.CommonUtils;
+import org.photography.utils.SendMail;
 
 public class UserService {
 
@@ -20,9 +24,31 @@ public class UserService {
 	 */
 
 	public void regUser(User user) throws HibernateException {
+
 		if (!findEmail(user.getEmail()) && !findNickname(user.getNickname())) {
+			user.setStatus(false);
+			user.setGender(2);
+			user.setActivationCode(CommonUtils.uuid() + CommonUtils.uuid());
+			Date date = new Date();
+			user.setRegisterTime(date);
 			dao.save(user);
+
+			// 发送邮件
+			SendMail sendMail = new SendMail();
+			sendMail.send(user);
 		}
+	}
+
+	public boolean activateUser(String activationCode) {
+		User user = (User) dao.find("activationCode", activationCode);
+		if (user != null && !user.isStatus()) {
+			user.setStatus(true);
+			dao.update(user);
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 
 	/**
@@ -46,7 +72,7 @@ public class UserService {
 	}
 
 	/**
-	 * 查找邮箱
+	 * 通过邮箱查找用户
 	 * 
 	 * @param str
 	 * @return
@@ -61,12 +87,27 @@ public class UserService {
 	}
 
 	/**
-	 * 查找用户名
+	 * 
+	 * 通过激活码查找用户
 	 * 
 	 * @param str
 	 * @return
 	 */
 
+	public boolean findActivate(String str) {
+		User user = (User) dao.find("activateCode", str);
+		if (user != null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 通过用户名查找用户
+	 * 
+	 * @param str
+	 * @return
+	 */
 	public boolean findNickname(String str) {
 		User user = (User) dao.find("nickname", str);
 		if (user != null) {
@@ -83,7 +124,7 @@ public class UserService {
 
 	public void modify(User user) {
 
-		dao.updata(user);
+		dao.update(user);
 	}
 
 }

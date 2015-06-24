@@ -14,13 +14,23 @@ public class UserDaoTest {
 	public void setUp() throws Exception {
 	}
 
+//	@Test
+//	public void testFind() {
+//		String field="email";
+//		String str="qweqeq";
+//		
+//		User user=(User) userDao.find(field, str);
+//		System.out.print(user.getNickname());
+//	}
 	@Test
-	public void testFind() {
-		String field="email";
-		String str="qweqeq";
-		
-		User user=(User) userDao.find(field, str);
-		System.out.print(user.getNickname());
+	public void testRegister() {
+		User user=new User();
+		user.setEmail("qqqqqqq");
+		user.setNickname("wwwww");
+		user.setPassword("eeeeeeee");
+		user.setActivationCode("dfdfgdfhgj");
+		userDao.save(user);
+	
 	}
 
 }

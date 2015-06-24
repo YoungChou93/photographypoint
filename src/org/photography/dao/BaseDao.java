@@ -10,35 +10,35 @@ public interface BaseDao {
 	
 	/**
 	 * 	
-	 * ±£´æÒ»¸ö¶ÔÏó
+	 * ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
-	 * @param obj ¶ÔÏó
+	 * @param obj ï¿½ï¿½ï¿½ï¿½
 	 * @throws HibernateException
 	 */
 	 public void save(Object obj) throws HibernateException;
 	 
 	 /**
-	  * ¸üÐÂÒ»¸ö¶ÔÏó
+	  * ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	  * 
 	  * @param obj
 	  * @throws HibernateException
 	  */
 	 
-	 public void updata(Object obj) throws HibernateException;
+	 public void update(Object obj) throws HibernateException;
 	 
 	 /**
-	  * É¾³ýÒ»¸ö¶ÔÏó
+	  * É¾ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	  * @param obj
 	  * @throws HibernateException
 	  */
 	 public void delete(Object obj) throws HibernateException;
 	 
 	 /**
-	  * Í¨¹ýÄ³Ò»×Ö¶ÎµÄÄÚÈÝ²éÕÒÄ³¸ö¶ÔÏó
+	  * Í¨ï¿½ï¿½Ä³Ò»ï¿½Ö¶Îµï¿½ï¿½ï¿½ï¿½Ý²ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	  * 
-	  * @param field  ×Ö¶Î
-	  * @param str    ÄÚÈÝ
-	  * @return       ¶ÔÏó
+	  * @param field  ï¿½Ö¶ï¿½
+	  * @param str    ï¿½ï¿½ï¿½ï¿½
+	  * @return       ï¿½ï¿½ï¿½ï¿½
 	  * @throws HibernateException
 	  */
 	 
@@ -47,9 +47,9 @@ public interface BaseDao {
 	 
 	 /**
 	  * 
-	  * @param field ×Ö¶Î
-	  * @param str   Æ¥ÅäµÄÄÚÈÝ
-	  * @return      ¶ÔÏóÁÐ±í
+	  * @param field ï¿½Ö¶ï¿½
+	  * @param str   Æ¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	  * @return      ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	  * @throws HibernateException
 	  */
 	 public List<Object> findPart(String field,String str) throws HibernateException;

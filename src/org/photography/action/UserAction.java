@@ -10,7 +10,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * 
  * @author ZhouYang
  * 
- * 2015-06-20
+ *         2015-06-20
  *
  */
 
@@ -39,6 +39,7 @@ public class UserAction extends ActionSupport {
 
 		return super.execute();
 	}
+
 	/**
 	 * 注册
 	 * 
@@ -59,17 +60,23 @@ public class UserAction extends ActionSupport {
 		}
 
 	}
-	
+
 	/**
 	 * 激活
+	 * 
 	 * @return
 	 * @throws Exception
 	 */
 
-	public String activate() throws Exception {
-		// TODO Auto-generated method stub
-		return super.execute();
-	}
+//	public String activate() throws Exception {
+//		this.setUserService(new UserService());
+//		if (userService.activateUser(user)) {
+//			return SUCCESS;
+//		} else {
+//			return ERROR;
+//		}
+//	}
+
 	/**
 	 * 登陆
 	 * 
@@ -78,25 +85,23 @@ public class UserAction extends ActionSupport {
 	 */
 
 	public String login() throws Exception {
-		try {  
-	         this.setUserService(new UserService());  
-	          
-	         if(userService.loginUser(user.getEmail(), user.getPassword()))
-	         {
-	        	return SUCCESS; 
-	         }
-	         else {
-	        	
-	         	return "fail";	 
-	        	 
-			} 
+		try {
+			this.setUserService(new UserService());
 
-	     } catch (Exception e) {  
-	         e.printStackTrace();  
-	         return ERROR;  
-	     }  
+			if (userService.loginUser(user.getEmail(), user.getPassword())) {
+				return SUCCESS;
+			} else {
+
+				return "fail";
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}
 	}
-	
+
 	/**
 	 * 退出
 	 * 
@@ -108,7 +113,7 @@ public class UserAction extends ActionSupport {
 		// TODO Auto-generated method stub
 		return super.execute();
 	}
-	
+
 	/**
 	 * 更新
 	 * 

@@ -36,17 +36,17 @@ public class UserDao implements BaseDao {
 		Transaction ts = session.beginTransaction();
 		session.save(obj); 
 		ts.commit();
-		session.close();
+		//session.close();
 		
 	}
 
 	@Override
-	public void updata(Object obj) throws HibernateException {
+	public void update(Object obj) throws HibernateException {
 		// TODO Auto-generated method stub
 		Transaction ts = session.beginTransaction();
 		session.update(obj); 
 		ts.commit();
-		session.close();
+		//session.close();
 		
 	}
 
@@ -56,7 +56,7 @@ public class UserDao implements BaseDao {
 		Transaction ts = session.beginTransaction();
 		session.delete(obj);
 		ts.commit();
-		session.close();
+		//session.close();
 		
 	}
 
@@ -67,7 +67,7 @@ public class UserDao implements BaseDao {
 		User user = (User)session.createQuery("from User where "+field+" = '"+str+"'")
                 .uniqueResult();
 		ts.commit();
-		session.close();
+		//session.close();
     	return user;
 	}
 	

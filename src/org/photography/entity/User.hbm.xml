@@ -15,7 +15,9 @@
         <property name="head" column="head" length="100" type="string" />  
         <property name="registerTime" column="register_time" type="date" />  
         <property name="weibo" column="weibo" length="12" type="string" /> 
-        <property name="qqNumber" column="qq_number" length="12" type="string" />   
+        <property name="qqNumber" column="qq_number" length="12" type="string" /> 
+        <property name="status" column="status" type="boolean" />   
+        <property name="activationCode" column="activation_code" length="128" type="string" />     
          
         <set name="points" table="points" inverse="true">
              <key column="uid"></key>

@@ -11,7 +11,7 @@
         </field-validator>  
         
         <field-validator type="regex">  
-            <param name="regexExpression"><![CDATA[(^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$)]]></param>  
+            <param name="regexExpression"><![CDATA[(^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$)]]></param>  
             <message>邮箱输入不合法</message>  
         </field-validator>   
     </field> 

@@ -1,32 +1,45 @@
 package org.photography.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
- * ÓÃ»§Ä£¿é
- * ÓÃ»§ÊµÌå
+ * ç”¨æˆ·å®ä½“ç±»
+ * 
  * @author ZhouYang
  *
+ * 2015-06-24
  */
 public class User implements Serializable{
 	
-	private Integer uid;       //ÓÃ»§id
-	private String nickname;  //êÇ³Æ 
-	private String email;     //ÓÊÏä¡¢µÇÂ½Ãû
-	private String password;  //ÃÜÂë
-	private Integer  gender;     //ĞÔ±ğ
-	private String brief;     //¼ò½é
-	private String location;  //µØÇø
-	private String head;      //Í·Ïñurl
-	private Date registerTime;// ×¢²áÊ±¼ä
-	private String weibo;     //Î¢²©
-	private String qqNumber;  //QQºÅ
+	private Integer uid;       //id
+	private String nickname;  //ç”¨æˆ·å
+	private String email;     //é‚®ç®±
+	private String password;  //å¯†ç 
+	private Integer  gender;     //æ€§åˆ«
+	private String brief;     //ç®€ä»‹
+	private String location;  //åœ°åŒº
+	private String head;      //å¤´åƒ
+	private Date registerTime;// æ³¨å†Œæ—¶é—´
+	private String weibo;     //å¾®åš
+	private String qqNumber;  //qq
+	private boolean status;//çŠ¶æ€ï¼Œtrueè¡¨ç¤ºå·²æ¿€æ´»ï¼Œæˆ–è€…æœªæ¿€æ´»
+	private String activationCode;//æ¿€æ´»ç ï¼Œå®ƒæ˜¯å”¯ä¸€å€¼ï¼å³æ¯ä¸ªç”¨æˆ·çš„æ¿€æ´»ç æ˜¯ä¸åŒçš„ï¼ 
 	
+	public boolean isStatus() {
+		return status;
+	}
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	public String getActivationCode() {
+		return activationCode;
+	}
+	public void setActivationCode(String activationCode) {
+		this.activationCode = activationCode;
+	}
 	private Set<Point> points=new HashSet<Point>();
 	private Set<PointComment> pointComments=new HashSet<PointComment>();
 	
