@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="s" uri="/struts-tags"%>  
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -26,8 +26,8 @@
 	$(function() {/*Map<String(Cookie名称),Cookie(Cookie本身)>*/
 		// 获取cookie中的用户名
 		var loginname = window.decodeURI("${cookie.loginname.value}");
-		if("${requestScope.user.loginname}") {
-			loginname = "${requestScope.user.loginname}";
+		if("${requestScope.user.email}") {
+			loginname = "${requestScope.user.email}";
 		}
 		$("#loginname").val(loginname);
 	});
@@ -36,19 +36,19 @@
   
   <body>
 	<div class="main">
-	  <div><img src="<c:url value='/images/logo.gif'/>" /></div>
+	  <div><img src="<c:url value='/images/logintitle.png'/>" style="width:250px;"/></div>
 	  <div>
-	    <div class="imageDiv"><img class="img" src="<c:url value='/images/zj.png'/>"/></div>
+	    <div class="imageDiv"><img class="img" src="<c:url value='/images/login.jpg'/>"/></div>
         <div class="login1">
 	      <div class="login2">
             <div class="loginTopDiv">
-              <span class="loginTop">传智会员登录</span>
+              <span class="loginTop">登录</span>
               <span>
                 <a href="<c:url value='/jsps/user/regist.jsp'/>" class="registBtn"></a>
               </span>
             </div>
             <div>
-              <form target="_top" action="<c:url value='/UserServlet'/>" method="post" id="loginForm">
+              <form target="_top" action="<c:url value='/login'/>" method="post" id="loginForm">
                 <input type="hidden" name="method" value="login" />
                   <table>
                     <tr>
@@ -57,7 +57,7 @@
                     </tr>
                     <tr>
                       <td width="50">用户名</td>
-                      <td><input class="input" type="text" name="loginname" id="loginname"/></td>
+                      <td><input class="input" type="text" name="user.email" id="loginname"/></td>
                     </tr>
                     <tr>
                       <td height="20">&nbsp;</td>
@@ -65,7 +65,7 @@
                     </tr>
                     <tr>
                       <td>密　码</td>
-                      <td><input class="input" type="password" name="loginpass" id="loginpass" value="${user.loginpass }"/></td>
+                      <td><input class="input" type="password" name="user.password" id="loginpass" value="${user.password }"/></td>
                     </tr>
                     <tr>
                       <td height="20">&nbsp;</td>
@@ -74,8 +74,8 @@
                     <tr>
                       <td>验证码</td>
                       <td>
-                        <input class="input yzm" type="text" name="verifyCode" id="verifyCode" value="${user.verifyCode }"/>
-                        <img id="vCode" src="<c:url value='/VerifyCodeServlet'/>"/>
+                        <input class="input yzm" type="text" name="verifyCode" id="verifyCode" value=""/>
+                        <img id="vCode" src="<c:url value='/verifyCode'/>"/>
                         <a id="verifyCode" href="javascript:_change()">换张图</a>
                       </td>
                     </tr>

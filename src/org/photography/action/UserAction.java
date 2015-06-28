@@ -84,23 +84,23 @@ public class UserAction extends ActionSupport {
 	 * @throws Exception
 	 */
 
-	public String login() throws Exception {
-		try {
-			this.setUserService(new UserService());
-
-			if (userService.loginUser(user.getEmail(), user.getPassword())) {
-				return SUCCESS;
-			} else {
-
-				return "fail";
-
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return ERROR;
-		}
-	}
+//	public String login() throws Exception {
+//		try {
+//			this.setUserService(new UserService());
+//
+//			if (userService.loginUser(user.getEmail(), user.getPassword())) {
+//				return SUCCESS;
+//			} else {
+//
+//				return "fail";
+//
+//			}
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return ERROR;
+//		}
+//	}
 
 	/**
 	 * 退出

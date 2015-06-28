@@ -10,23 +10,23 @@
         <!-- 注册 -->  
         <action name="register" class="org.photography.action.UserAction" method="register"> 
             <result name="success">/jsps/user/regist.jsp</result>  
-            <result name="success">/success.jsp</result>  
+            <result name="success">/index.jsp</result>  
             <result name="error">/fail.jsp</result>  
         </action>
         
         <!--激活-->
         <action name="activate" class="org.photography.action.ActivateAction" method="activate">  
             <result name="input">/login.jsp</result>  
-            <result name="success">/success.jsp</result>  
+            <result name="success">/index.jsp</result>  
             <result name="error">/fail.jsp</result> 
         </action> 
         
         <!--登陆-->
-        <action name="login" class="org.photography.action.UserAction" method="login">  
-            <result name="input">/login.jsp</result>  
-            <result name="success">/success.jsp</result>  
-            <result name="error">/fail.jsp</result> 
-            <result name="fail">/fail.jsp</result> 
+        <action name="login" class="org.photography.action.LoginAction">  
+            <result name="input">/jsps/user/login.jsp</result>  
+            <result name="success">/index.jsp</result>  
+            <result name="error">/jsps/user/login.jsp</result> 
+
         </action>  
         
         <!--退出-->

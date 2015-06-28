@@ -4,17 +4,17 @@ $(function() {
 	 */
 	$("#submit").hover(
 		function() {
-			$("#submit").attr("src", "/goods/images/login2.jpg");
+			$("#submit").attr("src", "/photography/images/login2.jpg");
 		},
 		function() {
-			$("#submit").attr("src", "/goods/images/login1.jpg");
+			$("#submit").attr("src", "/photography/images/login1.jpg");
 		}
 	);
 	
 	/*
 	 * 2. 给注册按钮添加submit()事件，完成表单校验
 	 */
-	$("#submit").submit(function(){
+	$("#loginForm").submit(function(){
 		$("#msg").text("");
 		var bool = true;
 		$(".input").each(function() {
@@ -23,6 +23,17 @@ $(function() {
 				bool = false;
 			}
 		});
+		
+		if(!validateVerifyCode()){
+			bool = false;
+		}
+		if(!validateLoginname()){
+			bool = false;
+		}
+		if(!validateLoginpass()){
+			bool = false;
+		}
+		
 		return bool;
 	});
 	
@@ -108,20 +119,34 @@ function validateVerifyCode() {
 		bool = false;
 	} else {//验证码是否正确
 		$.ajax({
-			cache: false,
-			async: false,
-			type: "POST",
-			dataType: "json",
-			data: {method: "ajaxValidateVerifyCode", verifyCode: value},
-			url: "/goods/UserServlet",
-			success: function(flag) {
-				if(!flag) {
+			url:"/photography/ajaxValidateVerifyCode",//要请求的servlet
+			data:{verifyCode:value},//给服务器的参数
+			type:"POST",
+			dataType:"html",
+			async:false,//是否异步请求，如果是异步，那么不会等服务器返回，我们这个函数就向下运行了。
+			cache:false,
+			success:function(result) {
+				if(result=="fail")
+				{
 					$("#verifyCodeError").css("display", "");
 					$("#verifyCodeError").text("错误的验证码！");
-					bool = false;					
+					bool = false;
 				}
 			}
 		});
 	}
 	return bool;
 }
+
+/*
+ * 换一张验证码
+ */
+function _change() {
+	/*
+	 * 1. 获取<img>元素
+	 * 2. 重新设置它的src
+	 * 3. 使用毫秒来添加参数
+	 */
+	$("#vCode").attr("src", "/photography/verifyCode?a=" + new Date().getTime());
+}
+

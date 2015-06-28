@@ -1,0 +1,62 @@
+html,body
+            {
+                height:100%;
+                width:100%;
+                padding:0;
+                margin:0;
+            }
+            
+            .dialog
+            {
+                width:300px;
+                height:350px;
+                position:absolute;
+				z-index:3;
+                background-color:#ccc;
+                -webkit-box-shadow:1px 1px 3px #292929;
+                -moz-box-shadow:1px 1px 3px #292929;
+                box-shadow:1px 1px 3px #292929;
+                margin:10px;
+				visibility:hidden;
+            }
+            
+            .dialog-title
+            {
+                height:35px;
+                color:#fff;
+                background-color:#404040;
+                font-size:12pt;
+                font-weight:bold;
+                padding:4px 6px;
+                cursor:move;
+                
+            }
+            
+            .dialog-content
+            {
+                padding:4px;
+            }
+            .dialog-close
+            {
+                width:35px;
+				height:35px;
+			    background-image: url(../../../img/dialog-close.png);
+				background-position: center;
+				position:absolute;
+				z-index:4;
+				right:5px;
+				top:5px;
+				
+            }
+            .dialog-p
+           {
+               font-family:Î¢ÈíÑÅºÚ;
+	       font-size:15px;
+            }
+            .dialog-sumbit
+            {
+               position:relative;
+               left:240px;
+             }
+
+               

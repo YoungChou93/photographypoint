@@ -56,18 +56,18 @@ public class UserService {
 	 * 
 	 * @param email
 	 * @param password
-	 * @return
+	 * @return user 用户
 	 */
 
-	public boolean loginUser(String email, String password) {
+	public User loginUser(String email, String password) {
 
 		User user = (User) dao.find("email", email);
 
 		if (user != null && password.equals(user.getPassword())) {
-			return true;
+			return user;
 		}
 
-		return false;
+		return null;
 
 	}
 
