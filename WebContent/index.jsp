@@ -25,9 +25,9 @@
 </div>
 
 		<nav class="sidebar jsc-sidebar" id="jsi-nav" data-sidebar-options="">
-		
+		<div style="width:100%;height:100%;">
 		<iframe frameborder="0" src="<c:url value='sidebar.jsp'/>" name="sidebar" style="width=100%;height:100%;"></iframe>
- 
+        </div>
         </nav>
 
 

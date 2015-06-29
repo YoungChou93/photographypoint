@@ -21,6 +21,7 @@
   
   <body>
 <div id="divMain">
+  <img src="<c:url value='/images/logintitle.png'/>" style="width:250px;"/>
   <div id="divTitle">
     <span id="spanTitle">新用户注册</span>
   </div>

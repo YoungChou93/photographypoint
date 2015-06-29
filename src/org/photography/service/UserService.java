@@ -31,6 +31,7 @@ public class UserService {
 			user.setActivationCode(CommonUtils.uuid() + CommonUtils.uuid());
 			Date date = new Date();
 			user.setRegisterTime(date);
+			user.setHead("/file/headpicture/headpicture.jpg");
 			dao.save(user);
 
 			// 发送邮件

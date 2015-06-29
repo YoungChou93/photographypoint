@@ -6,8 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-import org.photography.entity.Point;
-import org.photography.entity.User;
+
 
 public class HibernateUtils {
 
@@ -32,7 +31,7 @@ public class HibernateUtils {
 	}
 
 	/**
-	 * 获取SessionFactory
+	 * 锟斤拷取SessionFactory
 	 * 
 	 * @return SessionFactory
 	 */
@@ -42,7 +41,7 @@ public class HibernateUtils {
 	}
 
 	/**
-	 * 从SessionFactory获取Session
+	 * 锟斤拷SessionFactory锟斤拷取Session
 	 * 
 	 * @return Session
 	 */

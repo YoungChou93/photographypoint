@@ -24,31 +24,32 @@
 	}
 	.top-user{
 	position:relative;
-	top:10px;
+	top:20px;
+	left:-20px;
 	text-align:center;
+	margin:0 auto;
 	}
-	.top-user-a{
+	.top-user-name{
     font-family:微软雅黑;
-    font-size:20px;
-    margin-left:30px;
+    font-size:23px;
 	}
 	.bottom-login-register{
+	width:100%;
 	position:absolute;
 	bottom:20px;
-	left:20px;
 	text-align:center;
 	}
 	.bottom-login-a{
 	float:left;
 	font-family:微软雅黑;
 	font-size:20px;
-	margin-left:30px;
+	margin-left:50px;
 	}
     .bottom-register-a{
     float:left;
     font-family:微软雅黑;
     font-size:20px;
-    margin-left:30px;
+    margin-left:50px;
 	}
 	</style>
 </head>
@@ -66,12 +67,13 @@
 	   <%} else{%>
 		
 		<div class="top-user">
-		<a href="<c:url value='welcome.jsp'/>" target="main" class="top-user-a" >${sessionScope.sessionUser.nickname }</a>
+		<img src="<c:url value='${sessionScope.sessionUser.head}'/>" style="width:100px;"/>
+		<p><a href="<c:url value='jsps/user/userInfo.jsp'/>" target="main" class="top-user-a" >${sessionScope.sessionUser.nickname }</a></p>
 		</div>
 		
 	   <%} %>
 	   
-		<div style="position:relative;top:30%;width:100%;">
+		<div style="position:absolute;top:200px;width:100%;">
 		<p class="p-position">
 		<img src="img/index.png" style="width:45px;"/>
 		<a href="<c:url value='welcome.jsp'/>" style="position:relative;top:-10px;left:10px;" target="main">首页</a>
