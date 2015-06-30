@@ -8,7 +8,6 @@ import org.hibernate.Transaction;
 import org.photography.entity.User;
 import org.photography.utils.HibernateUtils;
 
-
 /**
  * 用户模块
  * 
@@ -16,75 +15,96 @@ import org.photography.utils.HibernateUtils;
  * 
  * @author ZhouYang
  * 
- * 2015-06-21
+ *         2015-06-21
  *
  */
 
-public class UserDao implements BaseDao {  
-	  
-    private Session session=HibernateUtils.openSession();  
-   
-	public Session getSession() {
-		return session;
-	}
-	
+public class UserDao implements BaseDao {
+
 	
 
 	@Override
 	public void save(Object obj) throws HibernateException {
-		// TODO Auto-generated method stub
-		Transaction ts = session.beginTransaction();
-		session.save(obj); 
-		ts.commit();
-		//session.close();
-		
+		Session session = HibernateUtils.openSession();
+		try {
+			Transaction ts = session.beginTransaction();
+			session.save(obj);
+			ts.commit();
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
 	}
 
 	@Override
 	public void update(Object obj) throws HibernateException {
-		// TODO Auto-generated method stub
-		Transaction ts = session.beginTransaction();
-		session.update(obj); 
-		ts.commit();
-		//session.close();
 		
+		Session session = HibernateUtils.openSession();
+		try {
+			Transaction ts = session.beginTransaction();
+			session.update(obj);
+			ts.commit();
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
 	}
 
 	@Override
 	public void delete(Object obj) throws HibernateException {
-		// TODO Auto-generated method stub
-		Transaction ts = session.beginTransaction();
-		session.delete(obj);
-		ts.commit();
-		//session.close();
 		
+		Session session = HibernateUtils.openSession();
+		try {
+			Transaction ts = session.beginTransaction();
+			session.delete(obj);
+			ts.commit();
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
 	}
 
 	@Override
-	public Object find(String field,String str) throws HibernateException {
-		// TODO Auto-generated method stub
-		Transaction ts = session.beginTransaction();
-		User user = (User)session.createQuery("from User where "+field+" = '"+str+"'")
-                .uniqueResult();
-		ts.commit();
-		//session.close();
-    	return user;
+	public Object find(String field, String str) throws HibernateException {
+		
+		Session session = HibernateUtils.openSession();
+		User user = null;
+		try {
+
+			Transaction ts = session.beginTransaction();
+			user = (User) session.createQuery(
+					"from User where " + field + " = '" + str + "'")
+					.uniqueResult();
+			ts.commit();
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return user;
 	}
-	
-	
 
 	@Override
 	public List<Object> findAll() throws HibernateException {
-//		Transaction ts = session.beginTransaction();
-//		List<Object> list = session.createQuery("from User")
-//				.list();
-//
-//		ts.commit();
-//		session.close();
-//		return list;
+		// Transaction ts = session.beginTransaction();
+		// List<Object> list = session.createQuery("from User")
+		// .list();
+		//
+		// ts.commit();
+		// session.close();
+		// return list;
 		return null;
 	}
-
 
 	@Override
 	public List<Object> findPart(String field, String str)
@@ -92,9 +112,5 @@ public class UserDao implements BaseDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 
-}  
-	
-
-
+}

@@ -2,13 +2,82 @@
 #divTitle {line-height: 30px; width: 880px; height: 30px; border: 1px solid #d0d0d0; background: url(/goods/images/bg_btns.png) repeat-x 0px -132px;}
 #spanTitle {margin-left: 18px; font-weight: 900;}
 #divBody {width: 880px; height: 490px; border-left: 1px solid #d0d0d0;border-bottom: 1px solid #d0d0d0;border-right: 1px solid #d0d0d0;}
-.tdText {width: 300px; text-align: right;font-size:15px;font-family:Î¢ÈíÑÅºÚ;color:gray;}
-.tdInput{width: 350px;text-align: left;height:40px}
+.tdText {width: 180px; text-align: right;font-size:15px;font-family:Î¢ÈíÑÅºÚ;color:gray;}
+.tdInput{width: 250px;text-align: left;height:40px}
 .tdError {width: 300px;}
-#tableForm {line-height: 10px;}
+#tableForm {line-height: 10px;position:relative;top:10px;left:100px;z-index:1;}
 .inputClass {width: 240px; height: 32px; border: 1px solid #7f9db9; line-height: 32px; padding-left: 10px;}
 #imgVerifyCode {width: 100px;}
 #divVerifyCode {text-align: center; border: 1px solid #e2e2e2;}
 .errorClass {background: url(/photography/images/error.png) no-repeat; color: #f40000; font-size: 10pt; border:1px solid #ffb8b8; background-color: #fef2f2; padding: 8px 8px 8px 35px;}
 p{font-size:15px;font-family:Î¢ÈíÑÅºÚ;color:gray;}
-.editTitle{float:right;}
+.editTitle{float:right;position:relative;top:3px;right:2px;}
+.headpicture{text-align:center;position:relative;top:20px;left:140px;float:left;z-index:10;}
+.modify-headpicture{text-decoration:none;font-size:20px;font-family:Î¢ÈíÑÅºÚ; color:gray;}
+.login-content{
+    visibility: hidden;
+    width:300px;
+    height:210px;
+    background-color:rgb(240,240,240);
+    z-index:10;
+    position:absolute;
+    top:25%;
+    left:40%;
+    text-align:center;
+    box-shadow: 0px 2px 3px 0px rgb(60,60,60);
+}
+
+.login-namepassword-p{
+    font-family:Î¢ÈíÑÅºÚ;
+    font-size:18px;
+    color:rgb(100,100,100);
+    position:relative;
+    top:-30px;
+}
+
+.login-input{
+    width:150px;
+    height:20px;
+}
+
+.login-img{
+    width:150px;
+    position:relative;
+    top:-20px;
+}
+
+.login-input:focus {
+    outline:none;
+    border: 2px solid rgb(254,200,16);
+}
+
+.login-surebutton{
+    width:60px;
+    height:25px;
+    position:relative;
+    left:73px;
+    top:-35px;
+}
+.login-cancelbutton{
+    width:60px;
+    height:25px;
+    position:relative;
+    left:-10px;
+    top:-60px;
+}
+.login-surebutton:focus{
+	 outline:none;
+     border: 1px solid rgb(31,120,241);
+}
+.login-cancelbutton:focus{
+	 outline:none;
+     border: 1px solid rgb(31,120,241);
+}
+.logincancel{
+	 width:30px;
+	 height:30px;
+	 position:relative;
+	 top:4px;
+	 left:130px;
+	 cursor:pointer;
+}

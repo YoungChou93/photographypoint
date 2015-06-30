@@ -35,7 +35,7 @@ $(window).load(function() {
 	{
 		thumbBox: '.thumbBox',
 		spinner: '.spinner',
-		imgSrc: 'images/avatar.png'
+		imgSrc: '/images/avatar.png'
 	}
 	var cropper = $('.imageBox').cropbox(options);
 	$('#upload-file').on('change', function(){

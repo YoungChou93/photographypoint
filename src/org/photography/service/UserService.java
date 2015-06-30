@@ -124,8 +124,11 @@ public class UserService {
 	 */
 
 	public void modify(User user) {
-
-		dao.update(user);
+		
+		//User findUser = (User) dao.find("activationCode", user.getActivationCode());
+      //  findUser=user;
+        dao.update(user);
+       
 	}
 
 }

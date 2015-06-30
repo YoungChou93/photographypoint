@@ -1,6 +1,5 @@
 package org.photography.dao;
 
-import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,14 +13,14 @@ public class UserDaoTest {
 	public void setUp() throws Exception {
 	}
 
-//	@Test
-//	public void testFind() {
-//		String field="email";
-//		String str="qweqeq";
-//		
-//		User user=(User) userDao.find(field, str);
-//		System.out.print(user.getNickname());
-//	}
+	@Test
+	public void testFind() {
+		String field="email";
+		String str="qweqeq";
+		
+		User user=(User) userDao.find(field, str);
+		System.out.print(user.getNickname());
+	}
 	@Test
 	public void testRegister() {
 		User user=new User();

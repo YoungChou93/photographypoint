@@ -11,6 +11,14 @@ import org.photography.service.UserService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * 用户模块，登陆action
+ * 
+ * @author zhouyang
+ * 
+ * 2015-06-30
+ *
+ */
 public class LoginAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
