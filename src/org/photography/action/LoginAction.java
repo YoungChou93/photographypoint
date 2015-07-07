@@ -12,7 +12,9 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
- * 用户模块，登陆action
+ * 用户模块
+ * 
+ * 登陆方法
  * 
  * @author zhouyang
  * 
@@ -38,6 +40,11 @@ public class LoginAction extends ActionSupport {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	/**
+	 * 用户登陆
+	 * 
+	 */
 
 	@Override
 	public String execute() throws Exception {
@@ -55,11 +62,12 @@ public class LoginAction extends ActionSupport {
 					Cookie cookie = new Cookie("loginname", loginname);
 					cookie.setMaxAge(60 * 60 * 24 * 10);// 保存10天
 					ServletActionContext.getResponse().addCookie(cookie);
+					return SUCCESS;
 				} else {
 					ServletActionContext.getRequest().setAttribute("msg","您还没有激活");
 					ServletActionContext.getRequest().setAttribute("user", user);
+					return ERROR;
 				}
-				return SUCCESS;
 			} else {
 				ServletActionContext.getRequest().setAttribute("msg","用户名或密码错误！");
 				ServletActionContext.getRequest().setAttribute("user", user);

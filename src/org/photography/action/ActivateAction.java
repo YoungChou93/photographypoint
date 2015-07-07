@@ -10,7 +10,7 @@ import com.opensymphony.xwork2.ActionSupport;
 /**
  * 用户模块
  * 
- * 用于用户激活的action
+ * 用户激活方法
  * 
  * @author ZhouYang
  * 

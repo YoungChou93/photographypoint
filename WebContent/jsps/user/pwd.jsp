@@ -12,23 +12,18 @@
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/css.css'/>">
+
 	<link rel="stylesheet" type="text/css" href="<c:url value='/jsps/css/user/pwd.css'/>">
 	<script type="text/javascript" src="<c:url value='/jquery/jquery-1.5.1.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/jsps/js/user/pwd.js'/>"></script>
-	<script src="<c:url value='/js/common.js'/>"></script>
+	
   </head>
   
   <body>
-    <div class="div0">
-    	<span>修改密码</span>
-    </div>
-
-	<div class="div1">
-		<form action="<c:url value='/UserServlet'/>" method="post" target="_top">
+  
+	<div class="modifycontent-content">
+	<img src="<c:url value='/images/logintitle.png'/>" style="width:200px;"/>
+		<form action="<c:url value='/modifyPassword'/>" method="post" target="_self" id="modifyForm">
 			<input type="hidden" name="method" value="updatePassword"/>
 		<table>
 			<tr>
@@ -37,12 +32,12 @@
 			</tr>
 			<tr>
 				<td align="right">原密码:</td>
-				<td><input class="input" type="password" name="loginpass" id="loginpass" value="${user.loginpass }"/></td>
+				<td><input class="input" type="password" name="oldpassword" id="loginpass" value="${user.loginpass }"/></td>
 				<td><label id="loginpassError" class="error"></label></td>
 			</tr>
 			<tr>
 				<td align="right">新密码:</td>
-				<td><input class="input" type="password" name="newpass" id="newpass" value="${user.newpass }""/></td>
+				<td><input class="input" type="password" name="newpassword" id="newpass" value="${user.newpass }"/></td>
 				<td><label id="newpassError" class="error"></label></td>
 			</tr>
 			<tr>
@@ -53,20 +48,21 @@
 			<tr>
 				<td align="right"></td>
 				<td>
-				  <img id="vCode" src="<c:url value='/VerifyCodeServlet'/>" border="1"/>
+				  <img id="vCode" src="<c:url value='/verifyCode'/>" border="1"/>
 		    	  <a href="javascript:_change();">看不清，换一张</a>
 				</td>
 			</tr>
 			<tr>
 				<td align="right">验证码:</td>
 				<td>
-				  <input class="input" type="text" name="verifyCode" id="verifyCode" value="${user.verifyCode }""/>
+				  <input class="input" type="text" name="verifyCode" id="verifyCode" value=""/>
 				</td>
 				<td><label id="verifyCodeError" class="error"></label></td>
 			</tr>
 			<tr>
 				<td align="right"></td>
-				<td><input id="submit" type="submit" value="修改密码"/></td>
+				<td><input id="submit" type="submit" value="修改密码" class="submitbutton"/></td>
+				<td><label></label></td>
 			</tr>
 		</table>
 		</form>

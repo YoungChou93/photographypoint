@@ -19,12 +19,12 @@ import org.photography.utils.HibernateUtils;
  *
  */
 
-public class UserDao implements BaseDao {
+public class UserDao implements BaseDao<User> {
 
 	
 
 	@Override
-	public void save(Object obj) throws HibernateException {
+	public void save(User obj) throws HibernateException {
 		Session session = HibernateUtils.openSession();
 		try {
 			Transaction ts = session.beginTransaction();
@@ -40,7 +40,7 @@ public class UserDao implements BaseDao {
 	}
 
 	@Override
-	public void update(Object obj) throws HibernateException {
+	public void update(User obj) throws HibernateException {
 		
 		Session session = HibernateUtils.openSession();
 		try {
@@ -57,7 +57,7 @@ public class UserDao implements BaseDao {
 	}
 
 	@Override
-	public void delete(Object obj) throws HibernateException {
+	public void delete(User obj) throws HibernateException {
 		
 		Session session = HibernateUtils.openSession();
 		try {
@@ -74,7 +74,7 @@ public class UserDao implements BaseDao {
 	}
 
 	@Override
-	public Object find(String field, String str) throws HibernateException {
+	public User find(String field, String str) throws HibernateException {
 		
 		Session session = HibernateUtils.openSession();
 		User user = null;
@@ -95,7 +95,7 @@ public class UserDao implements BaseDao {
 	}
 
 	@Override
-	public List<Object> findAll() throws HibernateException {
+	public List<User> findAll() throws HibernateException {
 		// Transaction ts = session.beginTransaction();
 		// List<Object> list = session.createQuery("from User")
 		// .list();
@@ -107,7 +107,7 @@ public class UserDao implements BaseDao {
 	}
 
 	@Override
-	public List<Object> findPart(String field, String str)
+	public List<User> findPart(String field, String str)
 			throws HibernateException {
 		// TODO Auto-generated method stub
 		return null;

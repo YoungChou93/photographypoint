@@ -1,52 +1,55 @@
 body {
-	font-size: 10pt;
+	
+	font-size: 14pt;
 	color: #404040;
-	font-family: Arial;
-}
-
-.div0 {
-	margin: 20px 80px;
-	font-size: 15px;
-}
-
-.div1 {
-	width: 820px;
-	margin-left: 80px;
-	margin-top: 30px;
-	margin-bottom: 0px;
-	font-size: 12px;
-	border: 1px solid #D2D3D5;
-	background-color: #F4FEFF;
+	font-family: Î¢ÈíÑÅºÚ;
 }
 
 table {
-	font-size: 10pt;
+	position:relative;
+	top:-20px;
+	font-size: 14pt;
 	color: #404040;
 	font-family: Arial;
-	margin-left: 20px;
-	margin-top: 20px;
+	margin-left: 100px;
+	font-family: Î¢ÈíÑÅºÚ;
 }
 
 .input {
+	padding-left:5px;
 	border: 1px solid #DADADA;
-	height: 20px;
+	width:200px;
+	height: 28px;
 	margin-left: 15px;
 }
 
-.bc {
-	width: 80px;
-	height: 20px;
-	margin-left: 15px;
-}
 
 #vCode {
 	margin-left: 15px;
 }
 
 #verifyCode {
-	width: 50px;
+	width: 80px;
 }
 
 label.error {
 	color: #cc3300;
 }
+.modifycontent-content{
+	padding-top:20px;
+    width:600px;
+    height:320px;
+    background-color:rgb(240,240,240);
+    text-align:center;
+    box-shadow: 0px 2px 3px 0px rgb(60,60,60);
+    position:absolute;  
+    left:50%;  
+    top:50%;  
+    margin:-180px 0 0 -300px 
+}
+.submitbutton{
+	margin-left: 15px;
+	width:80px;
+    height:30px;
+}
+

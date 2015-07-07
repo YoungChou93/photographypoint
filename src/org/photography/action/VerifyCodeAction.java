@@ -33,6 +33,10 @@ public class VerifyCodeAction extends ActionSupport {
 		this.imageStream = imageStream;
 	}
 
+	
+	/**
+	 * 产生验证码
+	 */
 
 	@Override
 	public String execute() throws Exception {

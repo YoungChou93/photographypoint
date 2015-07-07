@@ -5,56 +5,56 @@ import java.util.List;
 import org.hibernate.HibernateException;
 
 
-public interface BaseDao {
+public interface BaseDao<T> {
 	
 	
 	/**
 	 * 	
-	 * ����һ������
+	 *  保存对象
 	 * 
-	 * @param obj ����
+	 * @param obj 
 	 * @throws HibernateException
 	 */
-	 public void save(Object obj) throws HibernateException;
+	 public void save(T obj) throws HibernateException;
 	 
 	 /**
-	  * ����һ������
+	  * 更新对象
 	  * 
 	  * @param obj
 	  * @throws HibernateException
 	  */
 	 
-	 public void update(Object obj) throws HibernateException;
+	 public void update(T obj) throws HibernateException;
 	 
 	 /**
-	  * ɾ��һ������
+	  * 删除对象
 	  * @param obj
 	  * @throws HibernateException
 	  */
-	 public void delete(Object obj) throws HibernateException;
+	 public void delete(T obj) throws HibernateException;
 	 
 	 /**
-	  * ͨ��ĳһ�ֶε����ݲ���ĳ������
+	  * ͨ通过某一字段查找
 	  * 
-	  * @param field  �ֶ�
-	  * @param str    ����
-	  * @return       ����
+	  * @param field  字段
+	  * @param str    数据
+	  * @return       对象
 	  * @throws HibernateException
 	  */
 	 
-	 public Object find(String field,String str) throws HibernateException;
+	 public T find(String field,String str) throws HibernateException;
 	 
 	 
 	 /**
 	  * 
-	  * @param field �ֶ�
-	  * @param str   ƥ�������
-	  * @return      �����б�
+	  * @param field 
+	  * @param str   
+	  * @return      
 	  * @throws HibernateException
 	  */
-	 public List<Object> findPart(String field,String str) throws HibernateException;
+	 public List<T> findPart(String field,String str) throws HibernateException;
 	 
-	 public List<Object> findAll() throws HibernateException;
+	 public List<T> findAll() throws HibernateException;
 	 
 
 }

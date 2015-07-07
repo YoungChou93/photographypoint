@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="s" uri="/struts-tags"%>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,29 +13,20 @@
 <script type="text/javascript" src="<c:url value='/jsps/js/user/userInfo.js'/>"></script>
 </head>
 <body>
-<div class="login-content" id="logincontent">
-    <img src="<c:url value='/img/logincancel.png'/>" class="logincancel" onclick="HiddenPassword(Event)"/> 
-    <form action="" >
-        <img src="<c:url value='/images/logintitle.png'/>" class="login-img"/>
-        <p class="login-namepassword-p">原密码：<input type="password" name="id" value="" size="15" maxlength="14" class="login-input"/></p>
-        <p class="login-namepassword-p">新密码：<input type="password" name="password" value=""size="15" maxlength="14" class="login-input"/></p>
-        <input class="login-surebutton" style="" type="submit" value="确定">
-    </form>
-    <button class="login-cancelbutton" onclick="HiddenPassword(Event)">取消</button>
-</div>
+
 <div id="divMain">
   <img src="<c:url value='/images/logintitle.png'/>" style="width:250px;"/>
   <div id="divTitle">
     <span id="spanTitle">用户信息</span>
     <button class="editTitle" id="edit">编辑</button>
-    <button class="editTitle" onclick="ShowPassword(Event)">修改密码</button>
+    <a class="editTitle" href="<c:url value='/jsps/user/pwd.jsp'/>" target="main" >修改密码</a>
   </div>
   <div id="divBody">
   <div class="headpicture">
 <img src="<c:url value='${sessionScope.sessionUser.head}'/>" style="width:100px;"/>
 <p><a class="modify-headpicture" href="<c:url value='/jsps/user/headpicture.jsp'/>" target="main">修改头像</a></p>
 </div>
-  <form action="<c:url value='/modify'/>" id="modifyForm">
+  <form action="<c:url value='/modify'/>" id="modifyForm" target="_self">
     <table id="tableForm">
       <tr class="trLine">
         <td class="tdText">邮箱：</td>
@@ -139,36 +131,6 @@ document.getElementById("edit").onclick=function(){
         var divObj = document.getElementById("submitBtn");
         divObj.style.visibility = "visible";
         
-    	$(".errorClass").each(function() {
-    		showError($(this));//遍历每个元素，使用每个元素来调用showError方法
-    	});
-    		
-    	/*
-    	 * 3. 输入框得到焦点隐藏错误信息
-    	 */
-    	$(".nickname").focus(function() {
-    		showError($("#" + "nicknameInputError"));//隐藏没有信息的label
-    	});
-    	
-    	/*
-    	 * 4. 输入框失去焦点进行校验
-    	 */
-    	$(".nickname").blur(function() {
-    		alert("wwww");
-    		eval(validateLoginname());//执行函数调用
-    	});
-    	
-    	/*
-    	 * 5. 表单提交时进行校验
-    	 */
-    	$("#modifyForm").submit(function() {
-    		var bool = true;//表示校验通过
-    		if(!validateLoginname()) {
-    			bool = false;
-    		}
-    		
-    		return bool;
-    	});
 	}
 	else
 	{

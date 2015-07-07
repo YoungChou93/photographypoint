@@ -1,4 +1,28 @@
-
+$(function() {
+	
+	
+	$("#modifyForm").submit(function(){
+		var bool = true;
+		if(!validateLoginname()) {
+			bool = false;
+		}
+		return bool;
+	});
+			
+    	$(".nickname").blur(function() {
+         	eval(validateLoginname());//执行函数调用
+    	});
+    	
+    	/*
+    	 * 3. 输入框得到焦点隐藏错误信息
+    	 */
+    	$(".nickname").focus(function() {
+    		var labelId = $(this).attr("id") + "Error";//通过输入框找到对应的label的id
+    		$("#" + labelId).text("");//把label的内容清空！
+    		showError($("#" + labelId));//隐藏没有信息的label
+    	});
+    	
+});
 
 function validateLoginname() {
 	var id = "nicknameInput";
@@ -50,12 +74,3 @@ function validateLoginname() {
 	return true;
 }
 
-function HiddenPassword(objEvent) {
-	 var divObj = document.getElementById("logincontent");
-    divObj.style.visibility = "hidden";
-}
-
-function ShowPassword(objEvent) {
-	 var divObj = document.getElementById("logincontent");
-    divObj.style.visibility = "visible";
- }

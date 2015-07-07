@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="s" uri="/struts-tags"%>  
+  
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -20,18 +20,8 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value='/jsps/css/user/login.css'/>">
 	<script type="text/javascript" src="<c:url value='/jquery/jquery-1.5.1.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/jsps/js/user/login.js'/>"></script>
-	<script src="<c:url value='/js/common.js'/>"></script>
 
-<script type="text/javascript">
-	$(function() {/*Map<String(Cookie名称),Cookie(Cookie本身)>*/
-		// 获取cookie中的用户名
-		var loginname = window.decodeURI("${cookie.loginname.value}");
-		if("${requestScope.user.email}") {
-			loginname = "${requestScope.user.email}";
-		}
-		$("#loginname").val(loginname);
-	});
-</script>
+
   </head>
   
   <body>

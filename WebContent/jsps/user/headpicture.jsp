@@ -8,6 +8,7 @@
 <title>摄影点</title>
 <link rel="stylesheet" href="<c:url value='/jsps/css/user/style.css'/>" type="text/css" />
 <script type="text/javascript" src="<c:url value='/jsps/js/user/jquery-1.11.1.min.js'/>"></script> 
+<script type="text/javascript" src="<c:url value='/jsps/js/user/a.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/jsps/js/user/cropbox.js'/>"></script>
 </head>
 <body>
@@ -53,6 +54,24 @@ $(window).load(function() {
 		$('.cropped').append('<img src="'+img+'" align="absmiddle" style="width:64px;margin-top:4px;border-radius:64px;box-shadow:0px 0px 12px #7E7E7E;" ><p>64px*64px</p>');
 		$('.cropped').append('<img src="'+img+'" align="absmiddle" style="width:128px;margin-top:4px;border-radius:128px;box-shadow:0px 0px 12px #7E7E7E;"><p>128px*128px</p>');
 		$('.cropped').append('<img src="'+img+'" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;"><p>180px*180px</p>');
+		
+		$.ajax({
+			url:"/photography/modifyHeadPicture",//要请求的servlet
+			data:{headpictureString:img},//给服务器的参数
+			type:"POST",
+			dataType:"html",
+			async:false,//是否异步请求，如果是异步，那么不会等服务器返回，我们这个函数就向下运行了。
+			cache:false,
+			success:function(result) {
+				 alert("修改成功"); 
+				self.location='<c:url value='/jsps/user/userInfo.jsp'/>'; 
+			},
+			error:function() {  
+		       alert("异常！");  
+		    }  
+		});
+		
+
 	})
 	$('#btnZoomIn').on('click', function(){
 		cropper.zoomIn();
@@ -61,6 +80,8 @@ $(window).load(function() {
 		cropper.zoomOut();
 	})
 });
+
 </script>
+
 </body>
 </html>

@@ -7,7 +7,14 @@ import org.photography.dao.UserDao;
 import org.photography.entity.User;
 import org.photography.utils.CommonUtils;
 import org.photography.utils.SendMail;
-
+/**
+ * 用户模块
+ * 
+ * 业务逻辑层
+ * 
+ * @author zhouyang
+ *
+ */
 public class UserService {
 
 	private UserDao dao;
@@ -17,7 +24,7 @@ public class UserService {
 	}
 
 	/**
-	 * 保存用户（用户注册）
+	 * 用户注册
 	 * 
 	 * @param user
 	 * @throws HibernateException
@@ -26,20 +33,25 @@ public class UserService {
 	public void regUser(User user) throws HibernateException {
 
 		if (!findEmail(user.getEmail()) && !findNickname(user.getNickname())) {
-			user.setStatus(false);
-			user.setGender(2);
+			user.setStatus(false);//未激活状态
+			user.setGender(2);//性别未知
 			user.setActivationCode(CommonUtils.uuid() + CommonUtils.uuid());
 			Date date = new Date();
-			user.setRegisterTime(date);
-			user.setHead("/file/headpicture/headpicture.jpg");
+			user.setRegisterTime(date);//注册日期
+			user.setHead("/file/headpicture/headpicture.jpg");//默认头像
 			dao.save(user);
 
-			// 发送邮件
+			// 发送激活邮件邮件
 			SendMail sendMail = new SendMail();
 			sendMail.send(user);
 		}
 	}
 
+	/**
+	 * 用户激活
+	 * @param activationCode
+	 * @return
+	 */
 	public boolean activateUser(String activationCode) {
 		User user = (User) dao.find("activationCode", activationCode);
 		if (user != null && !user.isStatus()) {
@@ -53,7 +65,7 @@ public class UserService {
 	}
 
 	/**
-	 * 判断登陆
+	 * 用户登陆
 	 * 
 	 * @param email
 	 * @param password
@@ -125,9 +137,11 @@ public class UserService {
 
 	public void modify(User user) {
 		
-		//User findUser = (User) dao.find("activationCode", user.getActivationCode());
-      //  findUser=user;
-        dao.update(user);
+		User findUser = (User) dao.find("nickname", user.getNickname());
+		if(findUser==null || findUser.getUid().equals(user.getUid()) )
+		{
+            dao.update(user);
+		}
        
 	}
 

@@ -10,8 +10,15 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
+ * 用户模块
  * 
  * 用于异步验证的action
+ * 
+ * 包括
+ *   校验用户名
+ *   校验邮箱
+ *   校验验证码
+ * 
  * 
  * @author zhouyang
  * 
@@ -77,7 +84,12 @@ public class AjaxValidateAction extends ActionSupport {
 		this.verifyCode = verifyCode;
 	}
 
-	
+	/**
+	 * 校验邮箱
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	
 	
 	public String ajaxValidateEmail() throws Exception {
@@ -93,10 +105,23 @@ public class AjaxValidateAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
+	/**
+	 * 校验用户名
+	 * @return
+	 * @throws Exception
+	 */
+	
 	public String ajaxValidateNickname() throws Exception {
 
-		userService=new UserService();   
-	     
+		 
+		User user=(User) ActionContext.getContext().getSession().get("sessionUser");
+		if(user!=null && user.getNickname().equals(nickname))
+		{
+			inputStream = new ByteArrayInputStream("success".getBytes("utf-8"));
+			return SUCCESS;
+		}
+		
+		userService=new UserService(); 
         if(userService.findNickname(nickname)) {
 			inputStream = new ByteArrayInputStream("fail".getBytes("utf-8"));
 		} else {
@@ -107,7 +132,7 @@ public class AjaxValidateAction extends ActionSupport {
 	}
 	
 	/**
-	 * 验证验证码
+	 * 校验验证码
 	 * @return
 	 * @throws Exception
 	 */

@@ -1,4 +1,6 @@
 $(function() {
+	
+
 	/*
 	 * 1. 让登录按钮在得到和失去焦点时切换图片
 	 */
@@ -18,22 +20,12 @@ $(function() {
 		$("#msg").text("");
 		var bool = true;
 		$(".input").each(function() {
-			var inputName = $(this).attr("name");
+			var inputName = $(this).attr("id");
 			if(!invokeValidateFunction(inputName)) {
 				bool = false;
 			}
 		});
-		
-		if(!validateVerifyCode()){
-			bool = false;
-		}
-		if(!validateLoginname()){
-			bool = false;
-		}
-		if(!validateLoginpass()){
-			bool = false;
-		}
-		
+			
 		return bool;
 	});
 	
@@ -41,7 +33,7 @@ $(function() {
 	 * 3. 输入框得到焦点时隐藏错误信息
 	 */
 	$(".input").focus(function() {
-		var inputName = $(this).attr("name");
+		var inputName = $(this).attr("id");
 		$("#" + inputName + "Error").css("display", "none");
 	});
 	
@@ -49,7 +41,7 @@ $(function() {
 	 * 4. 输入框推动焦点时进行校验
 	 */
 	$(".input").blur(function() {
-		var inputName = $(this).attr("name");
+		var inputName = $(this).attr("id");
 		invokeValidateFunction(inputName);
 	})
 });

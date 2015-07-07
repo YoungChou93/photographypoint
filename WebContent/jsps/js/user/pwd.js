@@ -2,11 +2,11 @@ $(function() {
 	/*
 	 * 1. 给注册按钮添加submit()事件，完成表单校验
 	 */
-	$("#submit").submit(function(){
+	$("#modifyForm").submit(function(){
 		$("#msg").text("");
 		var bool = true;
 		$(".input").each(function() {
-			var inputName = $(this).attr("name");
+			var inputName = $(this).attr("id");
 			if(!invokeValidateFunction(inputName)) {
 				bool = false;
 			}
@@ -15,10 +15,18 @@ $(function() {
 	});
 	
 	/*
+	 * 2. 输入框得到焦点时隐藏错误信息
+	 */
+	$(".input").focus(function() {
+		var inputName = $(this).attr("id");
+		$("#" + inputName + "Error").css("display", "none");
+	});
+	
+	/*
 	 * 3. 输入框推动焦点时进行校验
 	 */
 	$(".input").blur(function() {
-		var inputName = $(this).attr("name");
+		var inputName = $(this).attr("id");
 		invokeValidateFunction(inputName);
 	});
 });
@@ -44,11 +52,11 @@ function validateLoginpass() {
 		$("#loginpassError").css("display", "");
 		$("#loginpassError").text("密码不能为空！");
 		bool = false;
-	} else if(value.length < 3 || value.length > 20) {//长度校验
+	} else if(value.length < 6 || value.length > 16) {//长度校验
 		$("#loginpassError").css("display", "");
-		$("#loginpassError").text("密码长度必须在3 ~ 20之间！");
+		$("#loginpassError").text("长度在6~16之间！");
 		bool = false;
-	});
+	}
 	return bool;
 }
 
@@ -61,9 +69,9 @@ function validateNewpass() {
 		$("#newpassError").css("display", "");
 		$("#newpassError").text("新密码不能为空！");
 		bool = false;
-	} else if(value.length < 3 || value.length > 20) {//长度校验
+	} else if(value.length < 6 || value.length > 16) {//长度校验
 		$("#newpassError").css("display", "");
-		$("#newpassError").text("新密码长度必须在3 ~ 20之间！");
+		$("#newpassError").text("长度在6~16之间");
 		bool = false;
 	}
 	return bool;
@@ -78,11 +86,11 @@ function validateReloginpass() {
 	var value = $("#reloginpass").val();
 	if(!value) {// 非空校验
 		$("#reloginpassError").css("display", "");
-		$("#reloginpassError").text("确认密码不能为空！");
+		$("#reloginpassError").text("密码不能为空！");
 		bool = false;
 	} else if(value != $("#newpass").val()) {//两次输入是否一致
 		$("#reloginpassError").css("display", "");
-		$("#reloginpassError").text("两次密码输入不一致！");
+		$("#reloginpassError").text("两次输入不一致！");
 		bool = false;
 	}
 	return bool;	
@@ -105,20 +113,33 @@ function validateVerifyCode() {
 		bool = false;
 	} else {//验证码是否正确
 		$.ajax({
-			cache: false,
-			async: false,
-			type: "POST",
-			dataType: "json",
-			data: {method: "ajaxValidateVerifyCode", verifyCode: value},
-			url: "/goods/UserServlet",
-			success: function(flag) {
-				if(!flag) {
+			url:"/photography/ajaxValidateVerifyCode",//要请求的servlet
+			data:{verifyCode:value},//给服务器的参数
+			type:"POST",
+			dataType:"html",
+			async:false,//是否异步请求，如果是异步，那么不会等服务器返回，我们这个函数就向下运行了。
+			cache:false,
+			success:function(result) {
+				if(result=="fail")
+				{
 					$("#verifyCodeError").css("display", "");
-					$("#verifyCodeError").text("错误的验证码！");
-					bool = false;					
+					$("#verifyCodeError").text("验证码错误！");
+					bool = false;
 				}
 			}
 		});
 	}
 	return bool;
+}
+
+/*
+ * 换一张验证码
+ */
+function _change() {
+	/*
+	 * 1. 获取<img>元素
+	 * 2. 重新设置它的src
+	 * 3. 使用毫秒来添加参数
+	 */
+	$("#vCode").attr("src", "/photography/verifyCode?a=" + new Date().getTime());
 }

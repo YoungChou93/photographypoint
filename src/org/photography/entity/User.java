@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * 用户模块
+ * 
  * 用户实体类
  * 
  * @author ZhouYang

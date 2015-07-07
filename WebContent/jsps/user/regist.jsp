@@ -26,13 +26,13 @@
     <span id="spanTitle">新用户注册</span>
   </div>
   <div id="divBody">
-<form action="<c:url value='/register'/>" method="post" id="registForm">
+<form action="<c:url value='/register'/>" method="post" id="registForm" target="_self">
 	<input type="hidden" name="method" value="regist"/>  
     <table id="tableForm">
       <tr>
         <td class="tdText">邮箱：</td>
         <td>
-          <input class="inputClass" type="text" name="user.email" id="email" value="${form.email }"/>
+          <input class="inputClass" type="text" name="user.email" id="email" value="${form.email }" maxlength="30"/>
         </td>
         <td>
           <label class="errorClass" id="emailError">${errors.email}</label>
@@ -41,7 +41,7 @@
        <tr>
         <td class="tdText">用户名：</td>
         <td>
-          <input class="inputClass" type="text" name="user.nickname" id="loginname" value="${form.loginname}"/>
+          <input class="inputClass" type="text" name="user.nickname" id="loginname" value="${form.loginname}" maxlength="20"/>
         </td>
         <td>
           <label class="errorClass" id="loginnameError">${errors.loginname}</label>
@@ -50,7 +50,7 @@
       <tr>
         <td class="tdText">密码：</td>
         <td>
-          <input class="inputClass" type="password" name="user.password" id="loginpass" value="${form.loginpass }"/>
+          <input class="inputClass" type="password" name="user.password" id="loginpass" value="${form.loginpass }" maxlength="16"/>
         </td>
         <td>
           <label class="errorClass" id="loginpassError">${errors.loginpass }</label>
@@ -59,7 +59,7 @@
       <tr>
         <td class="tdText">确认密码：</td>
         <td>
-          <input class="inputClass" type="password" name="reloginpass" id="reloginpass" value="${form.reloginpass }"/>
+          <input class="inputClass" type="password" name="reloginpass" id="reloginpass" value="${form.reloginpass }" maxlength="16"/>
         </td>
         <td>
           <label class="errorClass" id="reloginpassError">${errors.reloginpass}</label>
