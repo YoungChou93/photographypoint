@@ -1,6 +1,8 @@
 package org.photography.action;
 
+import org.apache.struts2.ServletActionContext;
 import org.photography.entity.User;
+import org.photography.exception.UserException;
 import org.photography.service.UserService;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -28,36 +30,19 @@ public class RegisterAction extends ActionSupport{
 	/**
 	 * 注册
 	 * 
-	 * @return
-	 * @throws Exception
 	 */
 
-	public String register() throws Exception {
+	public String register() {
 
-		try {
 			this.setUserService(new UserService());
-			userService.regUser(user);
+			try {
+				userService.regUser(user);
+			} catch (UserException e) {
+				ServletActionContext.getRequest().setAttribute("errorMsg",
+						e.getMessage());
+				return ERROR;
+			}
 			return SUCCESS;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return ERROR;
-		}
-
 	}
-
-	
-	/**
-	 * 退出
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-
-	public String exit() throws Exception {
-		// TODO Auto-generated method stub
-		return super.execute();
-	}
-
 
 }

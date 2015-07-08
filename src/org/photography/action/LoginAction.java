@@ -1,11 +1,13 @@
 package org.photography.action;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import javax.servlet.http.Cookie;
 
 import org.apache.struts2.ServletActionContext;
 import org.photography.entity.User;
+import org.photography.exception.UserException;
 import org.photography.service.UserService;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -18,7 +20,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * 
  * @author zhouyang
  * 
- * 2015-06-30
+ *         2015-06-30
  *
  */
 public class LoginAction extends ActionSupport {
@@ -40,44 +42,43 @@ public class LoginAction extends ActionSupport {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+
 	/**
 	 * 用户登陆
 	 * 
 	 */
 
 	@Override
-	public String execute() throws Exception {
+	public String execute() {
 
+		this.setUserService(new UserService());
+		User loginUser;
 		try {
-			this.setUserService(new UserService());
-			User loginUser = userService.loginUser(user.getEmail(),
+			loginUser = userService.loginUser(user.getEmail(),
 					user.getPassword());
-			if (loginUser != null) {
-				if (loginUser.isStatus()) {
-					ActionContext.getContext().getSession()
-							.put("sessionUser", loginUser);
-					String loginname = user.getEmail();
-					loginname = URLEncoder.encode(loginname, "utf-8");
-					Cookie cookie = new Cookie("loginname", loginname);
-					cookie.setMaxAge(60 * 60 * 24 * 10);// 保存10天
-					ServletActionContext.getResponse().addCookie(cookie);
-					return SUCCESS;
-				} else {
-					ServletActionContext.getRequest().setAttribute("msg","您还没有激活");
-					ServletActionContext.getRequest().setAttribute("user", user);
-					return ERROR;
-				}
-			} else {
-				ServletActionContext.getRequest().setAttribute("msg","用户名或密码错误！");
-				ServletActionContext.getRequest().setAttribute("user", user);
-				return ERROR;
-			}
-
-		} catch (Exception e) {
+			ActionContext.getContext().getSession()
+					.put("sessionUser", loginUser);
+			String loginname = user.getEmail();
+			loginname = URLEncoder.encode(loginname, "utf-8");
+			Cookie cookie = new Cookie("loginname", loginname);
+			cookie.setMaxAge(60 * 60 * 24 * 10);// 保存10天
+			ServletActionContext.getResponse().addCookie(cookie);
+			
+		} catch (UserException e) {
+			
+			ServletActionContext.getRequest().setAttribute("errorMsg",
+					e.getMessage());
+			ServletActionContext.getRequest().setAttribute("user", user);
+			return ERROR;
+			
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return ERROR;
 		}
+
+		return SUCCESS;
+
 	}
 
 }

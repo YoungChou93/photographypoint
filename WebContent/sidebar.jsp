@@ -55,7 +55,7 @@
 </head>
 <body>
 
-        <div style="width:100%;height:100%">
+        <div style="width:100%;height:100%;">
         <%
         if(session.getAttribute("sessionUser")==null){ %>
 		
@@ -73,7 +73,7 @@
 		
 	   <%} %>
 	   
-		<div style="position:absolute;top:200px;width:100%;">
+		<div style="position:absolute;top:200px;width:100%;text-aglin:center;">
 		<p class="p-position">
 		<img src="img/index.png" style="width:45px;"/>
 		<a href="<c:url value='welcome.jsp'/>" style="position:relative;top:-10px;left:10px;" target="main">首页</a>
@@ -94,7 +94,18 @@
 		<a href="<c:url value='map.jsp'/>" style="position:relative;top:-10px;left:10px;" target="main">关于</a>
 		</p>
 		
+		 <%if(session.getAttribute("sessionUser")!=null){ %>
+		
+	    
+		 <a href="<c:url value='/logout?logout=logout'/>" style="position:relative;left:40%;" target="_top"><img src="<c:url value='/img/logout.png'/>" style="width:45px;"/></a>
+         
+	     <%}%>
+		
 		</div>
+		
+		
+		
+		
 		</div>
 		
 	

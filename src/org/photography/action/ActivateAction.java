@@ -3,6 +3,7 @@ package org.photography.action;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
+import org.photography.exception.UserException;
 import org.photography.service.UserService;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -14,7 +15,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * 
  * @author ZhouYang
  * 
- * 2015-6-24
+ *         2015-6-24
  *
  */
 
@@ -24,14 +25,14 @@ public class ActivateAction extends ActionSupport {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 激活码
 	 */
 	private String activationCode;
-	
+
 	private UserService userService;
-	
+
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
@@ -44,19 +45,20 @@ public class ActivateAction extends ActionSupport {
 		this.activationCode = activateCode;
 	}
 
-	
-	public String activate() throws Exception {
-		
+	public String activate() {
+
 		this.setUserService(new UserService());
 		HttpServletRequest request = ServletActionContext.getRequest();
-        String activationCode = request.getParameter("activationCode");
-		if (userService.activateUser(activationCode)) {
-			
-			return SUCCESS;
-		} else {
+		String activationCode = request.getParameter("activationCode");
+		try {
+			userService.activateUser(activationCode);
+		} catch (UserException e) {
+			ServletActionContext.getRequest().setAttribute("errorMsg",
+					e.getMessage());
 			return ERROR;
 		}
+
+		return SUCCESS;
 	}
-	
 
 }

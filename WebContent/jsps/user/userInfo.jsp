@@ -19,14 +19,14 @@
   <div id="divTitle">
     <span id="spanTitle">用户信息</span>
     <button class="editTitle" id="edit">编辑</button>
-    <a class="editTitle" href="<c:url value='/jsps/user/pwd.jsp'/>" target="main" >修改密码</a>
+    <a class="modify-password" href="<c:url value='/jsps/user/pwd.jsp'/>" target="main" >修改密码</a>
   </div>
   <div id="divBody">
   <div class="headpicture">
 <img src="<c:url value='${sessionScope.sessionUser.head}'/>" style="width:100px;"/>
 <p><a class="modify-headpicture" href="<c:url value='/jsps/user/headpicture.jsp'/>" target="main">修改头像</a></p>
 </div>
-  <form action="<c:url value='/modify'/>" id="modifyForm" target="_self">
+  <form action="<c:url value='/modifyInfo'/>" id="modifyForm" target="_self">
     <table id="tableForm">
       <tr class="trLine">
         <td class="tdText">邮箱：</td>
@@ -34,7 +34,7 @@
           <p>${sessionScope.sessionUser.email} </p>
         </td>
         <td>
-          <label></label>
+          <s:fielderror/>
         </td>
       </tr>
        <tr class="trLine">

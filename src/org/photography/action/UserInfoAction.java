@@ -184,8 +184,8 @@ public class UserInfoAction extends ActionSupport {
 	/**
 	 * 修改基本信息
 	 */
-	@Override
-	public String execute() throws Exception {
+	
+	public String modifyInfo(){
 		User user = (User) ActionContext.getContext().getSession()
 				.get("sessionUser");
 
@@ -211,9 +211,9 @@ public class UserInfoAction extends ActionSupport {
 	 * 修改密码
 	 * 
 	 * @return
-	 * @throws Exception
+	 * 
 	 */
-	public String modifyPassword() throws Exception {
+	public String modifyPassword() {
 		User user = (User) ActionContext.getContext().getSession()
 				.get("sessionUser");
 		if (user != null && user.getPassword().equals(oldpassword)) {
@@ -224,51 +224,49 @@ public class UserInfoAction extends ActionSupport {
 
 			ActionContext.getContext().getSession().put("sessionUser", user);
 		}else{
-			
-			
-			
+		
 			return ERROR;
 		}
 		
 		return SUCCESS;
 	}
 
-	/**
-	 * 校验修改密码方法
-	 */
-	public void validateModifyPassword() {
-		if (oldpassword != null
-				&& !Pattern.matches("\\w{6,16}", oldpassword.trim())) {
-			addFieldError(oldpassword, "密码输入不合法,6~16");
-		}
-		if (newpassword != null
-				&& !Pattern.matches("\\w{6,16}", newpassword.trim())) {
-			addFieldError(newpassword, "密码输入不合法,6~16");
-		}
-	}
+//	/**
+//	 * 校验修改密码方法
+//	 */
+//	public void validateModifyPassword() {
+//		if (oldpassword != null
+//				&& !Pattern.matches("\\w{6,16}", oldpassword.trim())) {
+//			addFieldError(oldpassword, "密码输入不合法,6~16");
+//		}
+//		if (newpassword != null
+//				&& !Pattern.matches("\\w{6,16}", newpassword.trim())) {
+//			addFieldError(newpassword, "密码输入不合法,6~16");
+//		}
+//	}
 
-	public String modifyHead() throws Exception {
-		User user = (User) ActionContext.getContext().getSession()
-				.get("sessionUser");
-		if (user != null) {
-			FileOutputStream fos = new FileOutputStream(getSavePath() + "\\"
-					+ user.getUid() + CommonUtils.uuid() + ".jpg");
-			FileInputStream fis = new FileInputStream(getHeadpicture());
-			byte[] buffer = new byte[1024];
-			int len = 0;
-			while ((len = fis.read(buffer)) > 0) {
-				fos.write(buffer, 0, len);
-			}
-		}
-		return SUCCESS;
-
-	}
+//	public String modifyHead() throws Exception {
+//		User user = (User) ActionContext.getContext().getSession()
+//				.get("sessionUser");
+//		if (user != null) {
+//			FileOutputStream fos = new FileOutputStream(getSavePath() + "\\"
+//					+ user.getUid() + CommonUtils.uuid() + ".jpg");
+//			FileInputStream fis = new FileInputStream(getHeadpicture());
+//			byte[] buffer = new byte[1024];
+//			int len = 0;
+//			while ((len = fis.read(buffer)) > 0) {
+//				fos.write(buffer, 0, len);
+//			}
+//		}
+//		return SUCCESS;
+//
+//	}
     /**
      * 修改头像
      * @return
      * @throws Exception
      */
-	public String modifyHeadPicture() throws Exception {
+	public String modifyHeadPicture() {
 
 		User user = (User) ActionContext.getContext().getSession()
 				.get("sessionUser");

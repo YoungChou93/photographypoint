@@ -43,11 +43,11 @@
                   <table>
                     <tr>
                       <td width="50"></td>
-                      <td><label class="error" id="msg">${msg }</label></td>
+                      <td><label class="error" id="msg">${errorMsg }</label></td>
                     </tr>
                     <tr>
-                      <td width="50">用户名</td>
-                      <td><input class="input" type="text" name="user.email" id="loginname"/></td>
+                      <td width="50">邮箱</td>
+                      <td><input class="input" type="text" name="user.email" id="loginname" value="${user.email }"/></td>
                     </tr>
                     <tr>
                       <td height="20">&nbsp;</td>
@@ -55,7 +55,7 @@
                     </tr>
                     <tr>
                       <td>密　码</td>
-                      <td><input class="input" type="password" name="user.password" id="loginpass" value="${user.password }"/></td>
+                      <td><input class="input" type="password" name="user.password" id="loginpass"/></td>
                     </tr>
                     <tr>
                       <td height="20">&nbsp;</td>

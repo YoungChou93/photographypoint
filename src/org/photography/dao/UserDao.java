@@ -1,7 +1,6 @@
 package org.photography.dao;
 
 import java.util.List;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -21,18 +20,17 @@ import org.photography.utils.HibernateUtils;
 
 public class UserDao implements BaseDao<User> {
 
-	
-
 	@Override
-	public void save(User obj) throws HibernateException {
+	public void save(User obj) {
 		Session session = HibernateUtils.openSession();
+		Transaction ts = null;
 		try {
-			Transaction ts = session.beginTransaction();
+			ts = session.beginTransaction();
 			session.save(obj);
 			ts.commit();
-		} catch (Exception e) {
-
-			e.printStackTrace();
+		} catch (RuntimeException e) {
+			ts.rollback();
+			throw e;
 		} finally {
 			session.close();
 		}
@@ -40,16 +38,17 @@ public class UserDao implements BaseDao<User> {
 	}
 
 	@Override
-	public void update(User obj) throws HibernateException {
-		
+	public void update(User obj){
+
 		Session session = HibernateUtils.openSession();
+		Transaction ts = null;
 		try {
-			Transaction ts = session.beginTransaction();
+			ts = session.beginTransaction();
 			session.update(obj);
 			ts.commit();
-		} catch (Exception e) {
-
-			e.printStackTrace();
+		} catch (RuntimeException  e) {
+			ts.rollback();
+			throw e;
 		} finally {
 			session.close();
 		}
@@ -57,16 +56,17 @@ public class UserDao implements BaseDao<User> {
 	}
 
 	@Override
-	public void delete(User obj) throws HibernateException {
-		
+	public void delete(User obj){
+
 		Session session = HibernateUtils.openSession();
+		Transaction ts = null;
 		try {
-			Transaction ts = session.beginTransaction();
+			ts = session.beginTransaction();
 			session.delete(obj);
 			ts.commit();
-		} catch (Exception e) {
-
-			e.printStackTrace();
+		} catch (RuntimeException  e) {
+			ts.rollback();
+			throw e;
 		} finally {
 			session.close();
 		}
@@ -74,20 +74,20 @@ public class UserDao implements BaseDao<User> {
 	}
 
 	@Override
-	public User find(String field, String str) throws HibernateException {
-		
+	public User find(String field, String str) {
+
 		Session session = HibernateUtils.openSession();
 		User user = null;
+		Transaction ts = null;
 		try {
-
-			Transaction ts = session.beginTransaction();
+			ts = session.beginTransaction();
 			user = (User) session.createQuery(
 					"from User where " + field + " = '" + str + "'")
 					.uniqueResult();
 			ts.commit();
-		} catch (Exception e) {
-
-			e.printStackTrace();
+		} catch (RuntimeException  e) {
+			ts.rollback();
+			throw e;
 		} finally {
 			session.close();
 		}

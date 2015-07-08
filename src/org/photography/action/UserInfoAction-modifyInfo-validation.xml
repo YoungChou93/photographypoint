@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.2//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+<validators>  
+    <!-- 添加对用户名的校验 -->  
+    <field name="Nickname">  
+        <field-validator type="requiredstring">  
+            <param name="trim">true</param>  
+            <message>用户名不能为空</message>  
+        </field-validator>  
+        
+        <field-validator type="stringlength">  
+            <param name="minLength">2</param>
+            <param name="maxLength">20</param>  
+            <message>用户名长度在2~20之间</message>  
+        </field-validator>   
+    </field> 
+     
+    <!-- 添加对性别的校验 -->  
+    <field name="gender">  
+        <field-validator type="required">  
+            <param name="trim">true</param>  
+            <message>性别不能为空</message>  
+        </field-validator>  
+        <field-validator type="int">  
+            <param name="min">0</param> 
+            <param name="max">2</param>  
+            <message>性别为数字0、1、2</message>  
+        </field-validator>  
+    </field>  
+    
+     <!-- 添加对省份的校验 -->  
+    <field name="ddlProvice">  
+        <field-validator type="stringlength">  
+            <param name="minLength">0</param>
+            <param name="maxLength">6</param>  
+            <message>省份不合法</message>  
+        </field-validator>  
+    </field>  
+    
+     <!-- 添加对城市的校验 -->  
+    <field name="ddlCity">  
+        <field-validator type="requiredstring">  
+            <param name="trim">true</param>  
+            <message>城市不能为空</message>  
+        </field-validator>  
+        <field-validator type="stringlength">  
+            <param name="minLength">2</param>
+            <param name="maxLength">7</param>  
+            <message>城市不合法</message>  
+        </field-validator>  
+    </field>  
+    
+     <!-- 添加对微博的校验 -->  
+    <field name="weibo">  
+       <field-validator type="stringlength">  
+            <param name="minLength">0</param>
+            <param name="maxLength">15</param>  
+            <message>微博名长度不合法</message>  
+        </field-validator>  
+    </field>
+
+     <!-- 添加对qq的校验 -->  
+    <field name="qq">  
+        <field-validator type="regex">  
+            <param name="regexExpression"><![CDATA[(\d{0,12})]]></param>  
+            <message>qq号不合法</message>  
+        </field-validator>  
+    </field>  
+</validators>  
