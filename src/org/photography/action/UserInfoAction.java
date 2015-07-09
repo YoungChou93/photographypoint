@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import org.apache.struts2.ServletActionContext;
 import org.photography.entity.User;
+import org.photography.exception.UserException;
 import org.photography.service.UserService;
 import org.photography.utils.CommonUtils;
 
@@ -49,8 +50,6 @@ public class UserInfoAction extends ActionSupport {
 	private String newpassword;// 新密码
 
 	private File headpicture;// 头像图片
-	private String contentType;// 文件类型
-	private String fileName;// 文件名
 	private String savePath;
 
 	private String headpictureString;
@@ -79,22 +78,6 @@ public class UserInfoAction extends ActionSupport {
 
 	public void setHeadpicture(File headpicture) {
 		this.headpicture = headpicture;
-	}
-
-	public String getContentType() {
-		return contentType;
-	}
-
-	public void setContentType(String contentType) {
-		this.contentType = contentType;
-	}
-
-	public String getFileName() {
-		return fileName;
-	}
-
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
 	}
 
 	public String getOldpassword() {
@@ -199,7 +182,14 @@ public class UserInfoAction extends ActionSupport {
 			user.setNickname(nickname);
 
 			this.setUserService(new UserService());
-			userService.modify(user);
+			try {
+				userService.modify(user);
+			} catch (UserException e) {
+				// TODO Auto-generated catch block
+				ServletActionContext.getRequest().setAttribute("errorMsg",
+						e.getMessage());
+				return INPUT;
+			}
 
 			ActionContext.getContext().getSession().put("sessionUser", user);
 		}
@@ -211,9 +201,10 @@ public class UserInfoAction extends ActionSupport {
 	 * 修改密码
 	 * 
 	 * @return
+	 * @throws UserException 
 	 * 
 	 */
-	public String modifyPassword() {
+	public String modifyPassword() throws UserException {
 		User user = (User) ActionContext.getContext().getSession()
 				.get("sessionUser");
 		if (user != null && user.getPassword().equals(oldpassword)) {
@@ -225,7 +216,7 @@ public class UserInfoAction extends ActionSupport {
 			ActionContext.getContext().getSession().put("sessionUser", user);
 		}else{
 		
-			return ERROR;
+			return INPUT;
 		}
 		
 		return SUCCESS;
@@ -271,7 +262,7 @@ public class UserInfoAction extends ActionSupport {
 		User user = (User) ActionContext.getContext().getSession()
 				.get("sessionUser");
 		if (user != null) {
-			if (headpictureString == null) // 图像数据为空
+			if (headpictureString == null || headpictureString.indexOf("data")==-1) // 图像数据为空
 				return ERROR;
 			BASE64Decoder decoder = new BASE64Decoder();
 			try {

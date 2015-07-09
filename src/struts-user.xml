@@ -37,7 +37,7 @@
         
         <!--更新-->
         <action name="modifyInfo" class="org.photography.action.UserInfoAction" method="modifyInfo"> 
-            <result name="input">/jsps/user/userInfo.jsp</result>  
+            <result name="input">/jsps/user/modifyUserInfo.jsp</result>  
             <result name="success">/jsps/user/userInfo.jsp</result>  
         </action>  
         
@@ -57,8 +57,8 @@
          <!--修改头像-->
         <action name="modifyHeadPicture" class="org.photography.action.UserInfoAction" method="modifyHeadPicture"> 
             <param name="savePath">/file/headpicture</param>
-            <result name="input">/jsps/user/userInfo.jsp</result>  
-            <result name="success">/jsps/user/userInfo.jsp</result>  
+            <result name="input">/jsps/user/headpicture.jsp</result>  
+            <result name="success">/jsps/user/userManager.jsp</result>  
         </action> 
         
         <!--获取激活码-->

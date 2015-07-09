@@ -152,13 +152,16 @@ public class UserService {
 	 * 更新用户 （用户修改信息）
 	 * 
 	 * @param user
+	 * @throws UserException 
 	 */
 
-	public void modify(User user) {
+	public void modify(User user) throws UserException {
 
 		User findUser = (User) dao.find("nickname", user.getNickname());
 		if (findUser == null || findUser.getUid().equals(user.getUid())) {
 			dao.update(user);
+		}else{
+			throw new UserException("用户名已存在");
 		}
 
 	}

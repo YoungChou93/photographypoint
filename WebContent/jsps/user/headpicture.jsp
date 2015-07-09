@@ -12,6 +12,7 @@
 <script type="text/javascript" src="<c:url value='/jsps/js/user/cropbox.js'/>"></script>
 </head>
 <body>
+<div class="croppedbody">
 <div class="container">
   <div class="imageBox">
     <div class="thumbBox"></div>
@@ -29,6 +30,7 @@
     <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-" >
   </div>
   <div class="cropped"></div>
+</div>
 </div>
 <script type="text/javascript">
 $(window).load(function() {
@@ -64,10 +66,11 @@ $(window).load(function() {
 			cache:false,
 			success:function(result) {
 				 alert("修改成功"); 
-				self.location='<c:url value='/jsps/user/userInfo.jsp'/>'; 
+				//self.location='<c:url value='/jsps/user/userManager.jsp'/>'; 
+				parent.location='<c:url value='/jsps/user/userManager.jsp'/>'; 
 			},
 			error:function() {  
-		       alert("异常！");  
+		       alert("失败");  
 		    }  
 		});
 		
