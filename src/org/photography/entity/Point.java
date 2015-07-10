@@ -6,18 +6,19 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Point implements Serializable{
-	private Integer pointId;        //×ø±êid
-	private String title;          //Ãû³Æ
-	private String content;        //½éÉÜ
-	private String longitude;      //¾­¶È
-	private String latitude;       //Î³¶È
-	private Date createTime;      //´´½¨ÈÕÆÚ
-	private String city;           //ËùÔÚ³ÇÊĞ   
-	private String label;          //±êÇ©
-	private String largePhotoUrl;  //´óÍ¼µØÖ· 
-	private String smallPhotoUrl;  //Ğ¡Í¼µØÖ· 
-	private Integer praise;        //ÔŞ
-	private User user;             //ÓÃ»§
+	
+	private Integer pointId;       //pid
+	private String title;          //æ ‡é¢˜ã€åç§°
+	private String content;        //æè¿°
+	private String longitude;      //ç»åº¦
+	private String latitude;       //çº¬åº¦
+	private Date createTime;       //åˆ›å»ºæ—¶é—´
+	private String city;           //åŸå¸‚   
+	private String label;          //æ ‡ç­¾
+	private String largePhotoUrl;  //å¤§å›¾åœ°å€
+	private String smallPhotoUrl;  //å°å›¾åœ°å€
+	private Integer praise;        //èµ
+	private User user;             //åˆ›å»ºè€…
 	
 	private Set<PointComment> pointComments=new HashSet<PointComment>();
 	

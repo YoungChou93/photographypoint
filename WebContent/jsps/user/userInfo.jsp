@@ -49,7 +49,9 @@ font-family:微软雅黑;
       <tr>
         <td class="tdtitle">性别：</td>
         <td class="tdtext">
-         <p >${sessionScope.sessionUser.gender}</p>
+         <p ><s:if test="#session.sessionUser.gender==0">女</s:if>
+         <s:elseif test="#session.sessionUser.gender==1">男</s:elseif>
+         <s:else>未知</s:else></p>
         </td>
       </tr>
      <tr >

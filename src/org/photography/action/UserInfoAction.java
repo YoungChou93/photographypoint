@@ -20,14 +20,11 @@ import com.opensymphony.xwork2.ActionSupport;
 /**
  * 用户模块
  * 
- * 包括
- *   修改基本信息
- *   修改密码
- *   修改头像
+ * 包括 修改基本信息 修改密码 修改头像
  * 
  * @author zhouyang
  * 
- *    2015-06-30
+ *         2015-06-30
  *
  */
 public class UserInfoAction extends ActionSupport {
@@ -167,13 +164,19 @@ public class UserInfoAction extends ActionSupport {
 	/**
 	 * 修改基本信息
 	 */
-	
-	public String modifyInfo(){
-		User user = (User) ActionContext.getContext().getSession()
-				.get("sessionUser");
 
-		if (user != null) {
-			location = ddlProvince + " " + ddlCity;
+	public String modifyInfo() {
+
+		User sessionUser = (User) ActionContext.getContext().getSession()
+				.get("sessionUser");
+		User user = new User(sessionUser);
+
+		if (sessionUser != null) {
+			if (ddlProvince.equals(ddlCity)) {
+				location = ddlProvince;
+			} else {
+				location = ddlProvince + " " + ddlCity;
+			}
 			user.setBrief(brief);
 			user.setGender(gender);
 			user.setWeibo(weibo);
@@ -184,6 +187,8 @@ public class UserInfoAction extends ActionSupport {
 			this.setUserService(new UserService());
 			try {
 				userService.modify(user);
+				ActionContext.getContext().getSession()
+						.put("sessionUser", user);
 			} catch (UserException e) {
 				// TODO Auto-generated catch block
 				ServletActionContext.getRequest().setAttribute("errorMsg",
@@ -191,7 +196,6 @@ public class UserInfoAction extends ActionSupport {
 				return INPUT;
 			}
 
-			ActionContext.getContext().getSession().put("sessionUser", user);
 		}
 
 		return SUCCESS;
@@ -201,7 +205,7 @@ public class UserInfoAction extends ActionSupport {
 	 * 修改密码
 	 * 
 	 * @return
-	 * @throws UserException 
+	 * @throws UserException
 	 * 
 	 */
 	public String modifyPassword() throws UserException {
@@ -214,55 +218,57 @@ public class UserInfoAction extends ActionSupport {
 			userService.modify(user);
 
 			ActionContext.getContext().getSession().put("sessionUser", user);
-		}else{
-		
+		} else {
+
 			return INPUT;
 		}
-		
+
 		return SUCCESS;
 	}
 
-//	/**
-//	 * 校验修改密码方法
-//	 */
-//	public void validateModifyPassword() {
-//		if (oldpassword != null
-//				&& !Pattern.matches("\\w{6,16}", oldpassword.trim())) {
-//			addFieldError(oldpassword, "密码输入不合法,6~16");
-//		}
-//		if (newpassword != null
-//				&& !Pattern.matches("\\w{6,16}", newpassword.trim())) {
-//			addFieldError(newpassword, "密码输入不合法,6~16");
-//		}
-//	}
+	// /**
+	// * 校验修改密码方法
+	// */
+	// public void validateModifyPassword() {
+	// if (oldpassword != null
+	// && !Pattern.matches("\\w{6,16}", oldpassword.trim())) {
+	// addFieldError(oldpassword, "密码输入不合法,6~16");
+	// }
+	// if (newpassword != null
+	// && !Pattern.matches("\\w{6,16}", newpassword.trim())) {
+	// addFieldError(newpassword, "密码输入不合法,6~16");
+	// }
+	// }
 
-//	public String modifyHead() throws Exception {
-//		User user = (User) ActionContext.getContext().getSession()
-//				.get("sessionUser");
-//		if (user != null) {
-//			FileOutputStream fos = new FileOutputStream(getSavePath() + "\\"
-//					+ user.getUid() + CommonUtils.uuid() + ".jpg");
-//			FileInputStream fis = new FileInputStream(getHeadpicture());
-//			byte[] buffer = new byte[1024];
-//			int len = 0;
-//			while ((len = fis.read(buffer)) > 0) {
-//				fos.write(buffer, 0, len);
-//			}
-//		}
-//		return SUCCESS;
-//
-//	}
-    /**
-     * 修改头像
-     * @return
-     * @throws Exception
-     */
+	// public String modifyHead() throws Exception {
+	// User user = (User) ActionContext.getContext().getSession()
+	// .get("sessionUser");
+	// if (user != null) {
+	// FileOutputStream fos = new FileOutputStream(getSavePath() + "\\"
+	// + user.getUid() + CommonUtils.uuid() + ".jpg");
+	// FileInputStream fis = new FileInputStream(getHeadpicture());
+	// byte[] buffer = new byte[1024];
+	// int len = 0;
+	// while ((len = fis.read(buffer)) > 0) {
+	// fos.write(buffer, 0, len);
+	// }
+	// }
+	// return SUCCESS;
+	//
+	// }
+	/**
+	 * 修改头像
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	public String modifyHeadPicture() {
 
 		User user = (User) ActionContext.getContext().getSession()
 				.get("sessionUser");
 		if (user != null) {
-			if (headpictureString == null || headpictureString.indexOf("data")==-1) // 图像数据为空
+			if (headpictureString == null
+					|| headpictureString.indexOf("data") == -1) // 图像数据为空
 				return ERROR;
 			BASE64Decoder decoder = new BASE64Decoder();
 			try {
@@ -282,8 +288,9 @@ public class UserInfoAction extends ActionSupport {
 				user.setHead("/file/headpicture/" + imageName);
 				this.setUserService(new UserService());
 				userService.modify(user);
-				
-				ActionContext.getContext().getSession().put("sessionUser", user);
+
+				ActionContext.getContext().getSession()
+						.put("sessionUser", user);
 				return SUCCESS;
 			} catch (Exception e) {
 				return ERROR;

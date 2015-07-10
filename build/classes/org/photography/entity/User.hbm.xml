@@ -11,7 +11,7 @@
         <property name="password" column="password" length="15" type="string" />  
         <property name="gender" column="gender" type="integer" />  
         <property name="brief" column="brief" length="100" type="string" />  
-        <property name="location" column="location" length="10" type="string" />  
+        <property name="location" column="location" length="15" type="string" />  
         <property name="head" column="head" length="100" type="string" />  
         <property name="registerTime" column="register_time" type="date" update="false"/>  
         <property name="weibo" column="weibo" length="12" type="string" /> 

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="s" uri="/struts-tags"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -47,19 +47,15 @@
      <div class="dialog-content">
 
 
-	<form action="addpoint"  method="post" id="form_addppoi" enctype="multipart/form-data">
-    
-    <p class="dialog-p">名称：<input type="text" name="ppoiname" value="" size="34" maxlength="14"/></p>
-   
-    <p class="dialog-p">经度：<input type="text" id="mapaddlng" name="longitude" value=""size="10" maxlength="12"/>
-    纬度：<input type="text" id="mapaddlat" name="latitude" value=""size="10" maxlength="12"/></p>
-    
-     <p class="dialog-p">备注：</p>
-	 <textarea rows="5" cols="37" form="form_addppoi" name="ppoicontent"></textarea>
-	 <input type="file" name="file" size="35" />
-
-     <p><input type="submit" value="确定" class="dialog-sumbit"></p>
-</form>
+	<s:form action=""  method="post" id="AddPointForm" enctype="multipart/form-data" target="_self">
+      <s:textfield key="名称" type="text" name="point.title" value="" size="34" maxlength="14" />
+      <s:textfield key="经度" type="text" name="point.longitude" value="" size="10" maxlength="12" id="mapaddlng"/>
+      <s:textfield key="纬度" type="text" name="point.latitude" value="" size="10" maxlength="12" id="mapaddlat"/>
+      <s:textfield key="城市" type="text" name="point.city" value="" size="10" maxlength="12" />
+	  <s:textarea  key="描述" type="text" name="point.content" rows="5" cols="30" ></s:textarea>
+	  <s:textfield key="文件" type="file" name="file" size="35" />
+      <s:submit type="submit" value="确定"  /> 
+   </s:form>
                 
 
 

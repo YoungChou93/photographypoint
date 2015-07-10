@@ -67,7 +67,7 @@
 	   <%} else{%>
 		
 		<div class="top-user">
-		<img src="<c:url value='${sessionScope.sessionUser.head}'/>" style="width:100px;"/>
+		<img src="<c:url value='${sessionScope.sessionUser.head}'/>" style="width:100px;height:100px;"/>
 		<p><a href="<c:url value='jsps/user/userManager.jsp'/>" target="main" class="top-user-a" >${sessionScope.sessionUser.nickname }</a></p>
 		</div>
 		

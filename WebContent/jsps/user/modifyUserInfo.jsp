@@ -9,6 +9,7 @@
 <title>摄影点</title>
 <script type="text/javascript" src="<c:url value='/jsps/js/index/chinacity.js'/>" mce_src="<c:url value='jsps/js/index/chinacity.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/jquery/jquery-1.5.1.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/jsps/js/user/modifyUserInfo.js'/>"></script>
 <style type="text/css">
 body{width:100%;height:100%; overflow: hidden;}
 .content{
@@ -17,19 +18,25 @@ body{width:100%;height:100%; overflow: hidden;}
   margin:20px auto 0 auto;
 }
 .table-content{
-width:100%;
-height:100%;
+  width:100%;
+  height:100%;
 }
 .tdtitle{
-width:200px;
-text-align:right;
-font-family:微软雅黑;
+  width:150px;
+  text-align:right;
+  font-family:微软雅黑;
 }
 .tdtext{
-width:300px;
-text-align:left;
-font-family:微软雅黑;
+  width:300px;
+  text-align:left;
+  font-family:微软雅黑;
 }
+.errorClass{
+  text-align:left;
+  font-family:微软雅黑;
+  color:red;
+}
+
 
 </style>
 
@@ -42,7 +49,7 @@ font-family:微软雅黑;
     <table class="table-content">
       <tr>
         <td class="tdtitle"></td>
-        <td class="tdtext">
+        <td class="tdtext" id="msg">
          <s:fielderror/>
          ${errorMsg } 
         </td>
@@ -56,7 +63,7 @@ font-family:微软雅黑;
        <tr >
         <td class="tdtitle">用户名：</td>
         <td class="tdtext">
-         <p><input type="text" name="nickname" id="" value="${sessionScope.sessionUser.nickname}" maxlength="12"/></p>
+         <p><input type="text" name="nickname" id="nickname" class="nickname" value="${sessionScope.sessionUser.nickname}" maxlength="12"/><label class="errorClass" id="nicknameError"></label></p>
         </td>
       </tr>
       <tr>
@@ -118,7 +125,18 @@ font-family:微软雅黑;
 document.getElementById("genderID").value = ${sessionScope.sessionUser.gender};
 var val="${sessionScope.sessionUser.location}";
 var arrys = val.split(" ");
-BindCity(arrys[1]);
+if(arrys.length>1){
+   BindProvince(arrys[0]);
+   BindCity(arrys[1]);
+ }else{
+   BindCity(val);
+   ddlProvince.options[0] = new Option(val,val);
+   ddlCity.options[0] = new Option(val,val);
+   ddlProvince.options[0].selected=true;
+   ddlCity.options[0].selected=true;
+}
+
+
 </script>
 
 </body>

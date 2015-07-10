@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
+    "http://struts.apache.org/dtds/struts-2.0.dtd">  
+  
+<struts>  
+    <include file="struts-default.xml" />  
+    <package name="point" extends="struts-default"> 
+        <action name="addPoint" class="org.photography.action.point.AddPointAction"> 
+            <result name="input"></result>  
+            <result name="success"></result>  
+            <result name="error"></result>  
+        </action>
+  
+    </package>  
+     
+</struts>  

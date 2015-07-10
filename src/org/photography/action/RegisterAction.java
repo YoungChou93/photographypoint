@@ -5,6 +5,7 @@ import org.photography.entity.User;
 import org.photography.exception.UserException;
 import org.photography.service.UserService;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class RegisterAction extends ActionSupport{
@@ -13,6 +14,16 @@ public class RegisterAction extends ActionSupport{
 	private User user;
 
 	private UserService userService;
+	
+	private String verifyCode;
+
+	public String getVerifyCode() {
+		return verifyCode;
+	}
+
+	public void setVerifyCode(String verifyCode) {
+		this.verifyCode = verifyCode;
+	}
 
 	public User getUser() {
 		return user;
@@ -33,6 +44,9 @@ public class RegisterAction extends ActionSupport{
 	 */
 
 	public String register() {
+		
+		if (ActionContext.getContext().getSession().get("session_vcode")
+				.equals(verifyCode)) {
 
 			this.setUserService(new UserService());
 			try {
@@ -40,9 +54,14 @@ public class RegisterAction extends ActionSupport{
 			} catch (UserException e) {
 				ServletActionContext.getRequest().setAttribute("errorMsg",
 						e.getMessage());
-				return ERROR;
+				return INPUT;
 			}
 			return SUCCESS;
+		}else{
+			ServletActionContext.getRequest().setAttribute("errorMsg",
+					"验证码错误");
+			return INPUT;
+		}
 	}
 
 }

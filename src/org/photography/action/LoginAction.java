@@ -31,6 +31,16 @@ public class LoginAction extends ActionSupport {
 
 	private UserService userService;
 
+	private String verifyCode;
+
+	public String getVerifyCode() {
+		return verifyCode;
+	}
+
+	public void setVerifyCode(String verifyCode) {
+		this.verifyCode = verifyCode;
+	}
+
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
@@ -51,34 +61,40 @@ public class LoginAction extends ActionSupport {
 	@Override
 	public String execute() {
 
-		this.setUserService(new UserService());
-		User loginUser;
-		try {
-			loginUser = userService.loginUser(user.getEmail(),
-					user.getPassword());
-			ActionContext.getContext().getSession()
-					.put("sessionUser", loginUser);
-			String loginname = user.getEmail();
-			loginname = URLEncoder.encode(loginname, "utf-8");
-			Cookie cookie = new Cookie("loginname", loginname);
-			cookie.setMaxAge(60 * 60 * 24 * 10);// 保存10天
-			ServletActionContext.getResponse().addCookie(cookie);
-			
-		} catch (UserException e) {
-			
-			ServletActionContext.getRequest().setAttribute("errorMsg",
-					e.getMessage());
-			ServletActionContext.getRequest().setAttribute("user", user);
-			return ERROR;
-			
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return ERROR;
+		if (ActionContext.getContext().getSession().get("session_vcode")
+				.equals(verifyCode)) {
+			this.setUserService(new UserService());
+			User loginUser;
+			try {
+				loginUser = userService.loginUser(user.getEmail(),
+						user.getPassword());
+				ActionContext.getContext().getSession()
+						.put("sessionUser", loginUser);
+				String loginname = user.getEmail();
+				loginname = URLEncoder.encode(loginname, "utf-8");
+				Cookie cookie = new Cookie("loginname", loginname);
+				cookie.setMaxAge(60 * 60 * 24 * 10);// 保存10天
+				ServletActionContext.getResponse().addCookie(cookie);
+
+			} catch (UserException e) {
+
+				ServletActionContext.getRequest().setAttribute("errorMsg",
+						e.getMessage());
+				ServletActionContext.getRequest().setAttribute("user", user);
+				return INPUT;
+
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return INPUT;
+			}
+
+			return SUCCESS;
+
+		} else {
+			ServletActionContext.getRequest().setAttribute("errorMsg", "验证码错误");
+			return INPUT;
 		}
-
-		return SUCCESS;
-
 	}
 
 }
