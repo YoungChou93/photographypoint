@@ -81,7 +81,7 @@
 		
 		<p class="p-position">
 		<img src="img/map.png" style="width:45px;"/>
-		<a href="<c:url value='map.jsp'/>" style="position:relative;top:-10px;left:10px;" target="main">地图</a>
+		<a href="<c:url value='/searchPoint'/>" style="position:relative;top:-10px;left:10px;" target="main">地图</a>
 		</p>
 		
 		<p class="p-position">

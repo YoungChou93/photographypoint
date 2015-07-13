@@ -240,22 +240,7 @@ public class UserInfoAction extends ActionSupport {
 	// }
 	// }
 
-	// public String modifyHead() throws Exception {
-	// User user = (User) ActionContext.getContext().getSession()
-	// .get("sessionUser");
-	// if (user != null) {
-	// FileOutputStream fos = new FileOutputStream(getSavePath() + "\\"
-	// + user.getUid() + CommonUtils.uuid() + ".jpg");
-	// FileInputStream fis = new FileInputStream(getHeadpicture());
-	// byte[] buffer = new byte[1024];
-	// int len = 0;
-	// while ((len = fis.read(buffer)) > 0) {
-	// fos.write(buffer, 0, len);
-	// }
-	// }
-	// return SUCCESS;
-	//
-	// }
+	
 	/**
 	 * 修改头像
 	 * 

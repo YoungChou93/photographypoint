@@ -13,7 +13,7 @@ public interface BaseDao<T> {
 	 *  保存对象
 	 * 
 	 * @param obj 
-	 * @throws HibernateException
+	 * 
 	 */
 	 public void save(T obj);
 	 
@@ -21,7 +21,7 @@ public interface BaseDao<T> {
 	  * 更新对象
 	  * 
 	  * @param obj
-	  * @throws HibernateException
+	  *
 	  */
 	 
 	 public void update(T obj);
@@ -29,28 +29,29 @@ public interface BaseDao<T> {
 	 /**
 	  * 删除对象
 	  * @param obj
-	  * @throws HibernateException
+	  * 
 	  */
 	 public void delete(T obj);
 	 
 	 /**
-	  * ͨ通过某一字段查找
+	  * ͨ通过某一字段查找对象
 	  * 
 	  * @param field  字段
 	  * @param str    数据
 	  * @return       对象
-	  * @throws HibernateException
+	  * 
 	  */
 	 
 	 public T find(String field,String str);
 	 
 	 
 	 /**
+	  * 通过某一字段查找一组对象
 	  * 
-	  * @param field 
-	  * @param str   
-	  * @return      
-	  * @throws HibernateException
+	  * @param field 字段
+	  * @param str   数据
+	  * @return      对象列表
+	  * 
 	  */
 	 public List<T> findPart(String field,String str);
 	 

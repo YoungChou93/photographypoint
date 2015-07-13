@@ -45,12 +45,6 @@
             <result name="success">/jsps/user/userInfo.jsp</result>  
         </action>  
         
-         <!--修改头像
-        <action name="modifyHead" class="org.photography.action.UserInfoAction" method="modifyHead"> 
-            <param name="savePath">/file/headpicture</param>
-            <result name="input">/jsps/user/userInfo.jsp</result>  
-            <result name="success">/jsps/user/userInfo.jsp</result>  
-        </action> -->
         
          <!--修改头像-->
         <action name="modifyHeadPicture" class="org.photography.action.UserInfoAction" method="modifyHeadPicture"> 

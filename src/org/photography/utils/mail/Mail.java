@@ -1,4 +1,4 @@
-package org.photography.utils;
+package org.photography.utils.mail;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -4,6 +4,8 @@
 		divObj = document.getElementById("dialog-add");
         divObj.style.visibility = "visible";
         addppoint=true;
+        document.getElementById("city").value= document.getElementById("ddlCity").value;
+        
 	}
     //关闭
 	function closedialog(){
@@ -16,7 +18,7 @@
 
 	// 百度地图API功能
 	var map = new BMap.Map("allmap");
-	var point = new BMap.Point(116.404, 39.915);
+	var point = new BMap.Point(114.404, 39.915);
 	map.centerAndZoom(point, 13);
 	var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_BOTTOM_RIGHT});// 左上角，添加比例尺
 	var top_right_navigation = new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL}); //右上角，仅包含平移和缩放按钮

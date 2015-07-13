@@ -7,7 +7,7 @@ import org.photography.dao.UserDao;
 import org.photography.entity.User;
 import org.photography.exception.UserException;
 import org.photography.utils.CommonUtils;
-import org.photography.utils.SendMail;
+
 
 /**
  * 用户模块

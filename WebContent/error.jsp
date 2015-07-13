@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="/struts-tags"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -40,11 +40,9 @@
 <p style="font-size:50px;color:red;font-famliy:微软雅黑;">${errorMsg}</p>
 <a href="<c:url value='/index.jsp'/>">进入主页</a>
 </div>
-<form action="<c:url value='/modifyPassword'/>">
-<input type="password" name="oldpassword"/>
-<input type="password" name="newpassword"/>
-<input type="submit"/>
-<s:fielderror/>
-</form>
+
+
+
+
 </body>
 </html>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.2//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+<validators>  
+    <!-- 添加对标题的校验 -->  
+    <field name="point.title">  
+        <field-validator type="requiredstring">  
+            <param name="trim">true</param>  
+            <message>标题不能为空</message>  
+        </field-validator>  
+        
+        <field-validator type="stringlength">  
+            <param name="minLength">2</param>
+            <param name="maxLength">15</param>  
+            <message>标题在2~15之间</message>  
+        </field-validator>   
+    </field> 
+     
+    <!-- 添加对描述的校验 -->  
+    
+    <field name="point.content">  
+        <field-validator type="required">  
+            <param name="trim">true</param>  
+            <message>描述不能为空</message>  
+        </field-validator>  
+        <field-validator type="stringlength">  
+            <param name="minLength">1</param>
+            <param name="maxLength">200</param>  
+            <message>描述在1~200之间</message>  
+        </field-validator> 
+    </field>  
+    
+     <!-- 添加对经度的校验 --> 
+    <field name="point.longitude">  
+        <field-validator type="required">  
+            <param name="trim">true</param>  
+            <message>经度不能为空</message>  
+        </field-validator>  
+        <field-validator type="stringlength">  
+            <param name="minLength">1</param>
+            <param name="maxLength">11</param>  
+            <message>经度在1~11位之间</message>  
+        </field-validator> 
+    </field>   
+    
+     <!-- 添加对纬度的校验  --> 
+    <field name="point.latitude">  
+        <field-validator type="required">  
+            <param name="trim">true</param>  
+            <message>纬度不能为空</message>  
+        </field-validator>  
+        <field-validator type="stringlength">  
+            <param name="minLength">1</param>
+            <param name="maxLength">11</param>  
+            <message>纬度在1~11位之间</message>  
+        </field-validator> 
+    </field>  
+    
+     <!-- 添加对城市的校验   -->
+    <field name="point.city">  
+        <field-validator type="requiredstring">  
+            <param name="trim">true</param>  
+            <message>城市不能为空</message>  
+        </field-validator>  
+        <field-validator type="stringlength">  
+            <param name="minLength">1</param>
+            <param name="maxLength">7</param>  
+            <message>城市不合法</message>  
+        </field-validator>  
+    </field>  
+    
+</validators>

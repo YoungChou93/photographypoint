@@ -7,9 +7,17 @@
     <include file="struts-default.xml" />  
     <package name="point" extends="struts-default"> 
         <action name="addPoint" class="org.photography.action.point.AddPointAction"> 
-            <result name="input"></result>  
-            <result name="success"></result>  
-            <result name="error"></result>  
+            <param name="savePath">/file/pointphoto</param>
+            <result type="chain" name="input">searchPoint</result>  
+            <result type="chain" name="success">searchPoint</result>  
+            <result name="error">/map.jsp</result>  
+        </action>
+        
+        <action name="searchPoint" class="org.photography.action.point.SearchPointAction"> 
+            <result name="input">/map.jsp</result>  
+            <result name="successmap">/map.jsp</result>  
+            <result name="successlist">/pointlist.jsp</result>  
+            <result name="error">/map.jsp</result>  
         </action>
   
     </package>  
