@@ -71,6 +71,51 @@ public class ImageUtil {
 		ImageIO.write(srcImage, "JPEG", saveFile);
 	}
 
+	
+	 /**
+     * 
+     * @param fromFile      原图片文件
+     * @param saveToFileStr 生成缩略图地址
+     * @param formatWideth  生成图片宽度
+     * @param formatHeight  生成图片高度
+     * @param imageType     图片文件类型
+     * @throws Exception    
+     */
+	public void fileToImage(File fromFile, String saveToFileStr,
+			int formatWideth, int formatHeight,String imageType) throws Exception {
+		BufferedImage srcImage;
+		File saveFile = new File(saveToFileStr);
+		srcImage = javax.imageio.ImageIO.read(fromFile); // construct image
+		int imageWideth = srcImage.getWidth(null);
+		int imageHeight = srcImage.getHeight(null);
+		int changeToWideth = 0;
+		int changeToHeight = 0;
+		if (imageWideth > 0 && imageHeight > 0) {
+			// flag=true;
+			if (imageWideth / imageHeight >= formatWideth / formatHeight) {
+				if (imageWideth > formatWideth) {
+					changeToWideth = formatWideth;
+					changeToHeight = (imageHeight * formatWideth) / imageWideth;
+				} else {
+					changeToWideth = imageWideth;
+					changeToHeight = imageHeight;
+				}
+			} else {
+				if (imageHeight > formatHeight) {
+					changeToHeight = formatHeight;
+					changeToWideth = (imageWideth * formatHeight) / imageHeight;
+				} else {
+					changeToWideth = imageWideth;
+					changeToHeight = imageHeight;
+				}
+			}
+		}
+
+		srcImage = imageZoomOut(srcImage, changeToWideth, changeToHeight);
+		ImageIO.write(srcImage, imageType, saveFile);
+	
+	}
+	
 	public BufferedImage imageZoomOut(BufferedImage srcBufferImage, int w, int h) {
 		width = srcBufferImage.getWidth();
 		height = srcBufferImage.getHeight();

@@ -17,7 +17,7 @@
         <property name="smallPhotoUrl" column="smallPhotoUrl" length="1500"  type="text" /> 
         <property name="praise" column="praise"  type="integer" />   
        
-        <many-to-one name="user" class="User" column="uid" ></many-to-one>
+        <many-to-one name="user" class="User" column="uid" lazy="false"></many-to-one>
         
         <set name="pointComments" table="point_comment)" inverse="true">
              <key column="point_id"></key>

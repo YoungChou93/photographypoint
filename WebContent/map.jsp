@@ -37,11 +37,8 @@
 <body>
 
   <div class="menu">
-   <img src="img/showdialog.png" onclick="showdialog()" class="menu-botton"/>
-  
-   <a href="<c:url value='/searchPoint?view=list'/>"><img src="img/pointlist.png" class="menu-botton"/></a>
-   
-     <a href="<c:url value='/searchPoint'/>"><img src="img/refresh.png" class="menu-botton"/></a>
+   <img src="img/showdialog.png" onclick="showdialog()" class="menu-botton"/> <a href="<c:url value='/searchPoint?view=list'/>"><img
+			src="img/pointlist.png" class="menu-botton" /></a> <a href="<c:url value='/searchPoint'/>"><img src="img/refresh.png" class="menu-botton"/></a>
   </div>
 
 <div style="position:absolute;z-index:3;left:55px;top:5px;">

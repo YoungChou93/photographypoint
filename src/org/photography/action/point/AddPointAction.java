@@ -16,12 +16,12 @@ import com.opensymphony.xwork2.ActionSupport;
 
 /**
  * 摄影点模块
- *  
+ * 
  * 添加摄影点
  * 
  * @author zhouyang
  *
- * 2015-7-13
+ *         2015-7-13
  * 
  */
 public class AddPointAction extends ActionSupport {
@@ -86,7 +86,7 @@ public class AddPointAction extends ActionSupport {
 
 		User user = (User) ActionContext.getContext().getSession()
 				.get("sessionUser");
-		if (user != null && pointPhoto!=null) {   
+		if (user != null && pointPhoto != null) {
 
 			String fileName = user.getNickname()
 					+ CommonUtils.uuid()
@@ -98,20 +98,24 @@ public class AddPointAction extends ActionSupport {
 
 			String smallPhotoPath = getSavePath() + "\\" + "smallphoto" + "\\"
 					+ fileName;
-			
+
 			FileOutputStream fos = new FileOutputStream(largePhotoPath);
 			FileInputStream fis = new FileInputStream(getPointPhoto());
 			byte[] buffer = new byte[1024];
 			int len = 0;
-			while ((len = fis.read(buffer)) > 0) {   //存大图
-				fos.write(buffer, 0, len); 
+			while ((len = fis.read(buffer)) > 0) { // 存大图
+				fos.write(buffer, 0, len);
 			}
 			fos.close();
 			fis.close();
 			setPointPhotoFileName(fileName);
 
 			ImageUtil imageUtil = new ImageUtil();
-			imageUtil.saveImageAsJpg(largePhotoPath, smallPhotoPath, 800, 600);//存小图
+			// imageUtil.saveImageAsJpg(largePhotoPath, smallPhotoPath, 800,
+			// 600);//存小图
+			imageUtil.fileToImage(getPointPhoto(), smallPhotoPath, 800, 600,
+					pointPhotoFileName.substring(pointPhotoFileName
+							.lastIndexOf(".") + 1));// 存小图
 
 			point.setUser(user);
 			point.setLargePhotoUrl("/file/pointphoto/largephoto/" + fileName);
